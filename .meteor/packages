@@ -9,3 +9,5 @@ autopublish
 insecure
 msavin:mongol
 iron:router
+accounts-ui
+accounts-password
