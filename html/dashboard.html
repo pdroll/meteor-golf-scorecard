@@ -1,0 +1,19 @@
+<template name="Dashboard">
+	{{#if error }}
+		<aside class="errors">
+			<p>{{ error }}</p>
+		</aside>
+	{{/if}}
+
+	<h1>Disc Golf App</h1>
+	<h2>{{ title }}</h2>
+
+	<ul>
+	{{#each games }}
+		<li>{{ this.createdFormatted }}</li>
+	{{/each}}
+	</ul>
+
+
+	<button class="btn" id="createGame" type="button">Create New Game</button>
+</template>
