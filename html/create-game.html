@@ -1,0 +1,54 @@
+<template name="CreateGame">
+	<form class="create-game-form">
+		<fieldset>
+			<legend>Create Game</legend>
+
+			<div class="field">
+				<h2>Players</h2>
+
+				<label for="players">Select Players</label>
+				<select id="players" multiple>
+					{{#each users }}
+						<option value="{{ this._id }}">{{ this.username }}</option>
+					{{/each}}
+				</select>
+			</div>
+
+			<hr>
+
+			<div class="field">
+				<h2>Holes</h2>
+
+				<label for="numberholes18">Number of Holes</label>
+				<p class="radio-options">
+					<label>9<input type="radio" name="numberholes" value="9"></label>
+					<label>18<input id="numberholes18" type="radio" name="numberholes" value="18" checked></label>
+				</p>
+			</div>
+
+			<hr>
+			<div class="field">
+				<h2>Course</h2>
+
+				{{#if courses.length }}
+					<label for="existingcourse">Select Course</label>
+					<select id="existingcourse">
+						{{#each courses }}
+							<option value="{{ this._id }}">{{ this.name }}</option>
+						{{/each}}
+					</select>
+
+					<p><em>OR</em></p>
+				{{/if}}
+
+				<label for="newcourse">Create New Course</label>
+				<input id="newcourse" type="text" placeholder="Course Name">
+			</div>
+
+			<hr>
+
+			<button class="btn" type="button" id="creategame">Start Game</button>
+
+		</fieldset>
+	</form>
+</template>

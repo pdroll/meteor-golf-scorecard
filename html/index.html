@@ -12,10 +12,12 @@
 
 <template name="AppLayout">
 
-	<main>
+	<main class="main-wrapper">
 		{{> yield}}
 	</main>
 
-	{{> loginButtons}}
+	<footer class="signin-footer">
+		{{> loginButtons}}
+	</footer>
 </template>
 

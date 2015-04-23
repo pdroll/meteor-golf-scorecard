@@ -17,8 +17,18 @@ Router.onBeforeAction(function () {
 Router.route('/', function () {
 	this.render('Dashboard', {
 		data: function () {
-			var games = Games.find({}, {sort : [['created', 'desc']]})
+			var games = Game.find({}, {sort : [['created', 'desc']]})
 			return {games: games};
+		}
+	});
+});
+
+
+Router.route('/create-game', function () {
+	this.render('CreateGame', {
+		data: {
+			users   : User.find({}),
+			courses : Course.find({})
 		}
 	});
 });
@@ -41,7 +51,7 @@ Router.route('/(.*)', function(){
 	error = 'Page Not Found';
 	this.render('Dashboard', {
 		data: function () {
-			var games = Games.find({}, {sort : [['created', 'desc']]})
+			var games = Game.find({}, {sort : [['created', 'desc']]})
 			return {
 				games: games,
 				error : 'Page Not Found'

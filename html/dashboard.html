@@ -10,10 +10,10 @@
 
 	<ul>
 	{{#each games }}
-		<li>{{ this.createdFormatted }}</li>
+		{{> gameListItem }}
 	{{/each}}
 	</ul>
 
 
-	<button class="btn" id="createGame" type="button">Create New Game</button>
+	<a class="btn" href="/create-game">Create New Game</a>
 </template>

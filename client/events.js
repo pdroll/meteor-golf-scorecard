@@ -1,46 +1,47 @@
 //
 // Dashboard Events
-Template.Dashboard.events({
+Template.CreateGame.events({
 
 	//
 	// Create new Game
-	'click #createGame': function (e) {
+	'click #creategame': function (e) {
 
-		Games.insert({
+		// Get Input
+		var playerIds =$('#players').val(),
+			numberholes = parseInt($('input[name="numberholes"]:checked').val(), 10),
+			existingCourse = $('#existingcourse').val(),
+			courseName = 'New Course',
+			users = [],
+			holes = [],
+			gameTemplate;
 
-			isCompleted : false,
-			isFavorite : false,
-			created : (new Date),
-			createdFormatted : moment().format('MM/D/YY h:mm a'),
-			course : null,
-			users : [
-				{
-					name : 'Pete',
-					score : -1,
-					strokes : 13
-				}
-			],
-			holes : [
-				{
-					par : 3,
-					users : [
-						{
-							userIndex : 0,
-							score : 3
-						}
-					]
-				}
-			]
+			console.log(numberholes);
 
-		}, function(err, gameId){
-			if(err){
-				console.log('ERROR : ' + err);
+		if(playerIds && playerIds.length){
+			playerIds.forEach(function(el, ix){
+				users.push(User.findOne(el));
+			});
+
+			if(existingCourse){
+				// @todo Handle Existing Course
+			} else {
+				courseName = $('#newcourse').val();
+
 			}
-			if(gameId){
-				console.log('Success : ' + gameId);
+
+			for (var i = 0; i < numberholes; ++i) {
+				holes.push(Hole.CreateNew(users));
 			}
-		});
 
+			gameTemplate = Game.CreateNew(users,holes,courseName);
 
+			console.log(gameTemplate);
+
+			var newGame = Game.insert(gameTemplate);
+			console.log(newGame);
+
+		} else {
+			alert('Please select at least one player.');
+		}
 	}
 });
