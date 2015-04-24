@@ -4,12 +4,13 @@ Template.CreateGame.events({
 
 	//
 	// Create new Game
-	'click #creategame': function (e) {
+	'click #creategame': function (e, template) {
 
 		// Get Input
-		var playerIds =$('#players').val(),
+		var playerIds = $('#players').val(),
 			numberholes = parseInt($('input[name="numberholes"]:checked').val(), 10),
 			existingCourse = $('#existingcourse').val(),
+			newCourse = $('#newcourse').val(),
 			courseName = 'New Course',
 			users = [],
 			holes = [],
@@ -22,7 +23,7 @@ Template.CreateGame.events({
 
 			if(existingCourse){
 				// @todo Handle Existing Course
-			} else {
+			} else if(newCourse) {
 				courseName = $('#newcourse').val();
 
 			}
@@ -33,9 +34,14 @@ Template.CreateGame.events({
 
 			gameTemplate = Game.CreateNew(users,holes,courseName);
 
-			var newGame = Meteor.call('InsertGame', gameTemplate);
-			console.log(newGame);
+			var newGame = Meteor.call('InsertGame', gameTemplate, function(err, gameId){
+				if(err){
+					console.log('Error with InsertGame');
+					console.log(err)
+				}
 
+				window.location.href = '/game/' + gameId;
+			});
 
 		} else {
 			alert('Please select at least one player.');

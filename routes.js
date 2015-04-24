@@ -34,12 +34,26 @@ Router.route('/create-game', function () {
 });
 
 
-Router.route('profile', function () {
-	this.render('Profile', {
-		data: function () {
-			return {user: Meteor.user()}
+Router.route('/game/:_id', function () {
+
+	this.wait(Meteor.subscribe('games', this.params._id));
+
+	if (this.ready()) {
+
+		var game = Game.findOne(this.params._id);
+
+		if(!game){
+			this.redirect('/');
 		}
-	});
+
+		this.render('GameDashboard', {
+			data: function () {
+				return {game: game}
+			}
+		});
+	} else {
+		this.render('Loading');
+	}
 });
 
 

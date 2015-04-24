@@ -1,7 +1,9 @@
 Meteor.methods({
 	InsertGame : function(gameObj){
-		var newGame = Game.insert(gameObj);
+		if (! Meteor.userId()) {
+	      throw new Meteor.Error("not-authorized");
+	    }
 
-		console.log(newGame);
+		return Game.insert(gameObj);
 	}
 });
