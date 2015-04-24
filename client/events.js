@@ -15,8 +15,6 @@ Template.CreateGame.events({
 			holes = [],
 			gameTemplate;
 
-			console.log(numberholes);
-
 		if(playerIds && playerIds.length){
 			playerIds.forEach(function(el, ix){
 				users.push(User.findOne(el));
@@ -35,10 +33,9 @@ Template.CreateGame.events({
 
 			gameTemplate = Game.CreateNew(users,holes,courseName);
 
-			console.log(gameTemplate);
-
-			var newGame = Game.insert(gameTemplate);
+			var newGame = Meteor.call('InsertGame', gameTemplate);
 			console.log(newGame);
+
 
 		} else {
 			alert('Please select at least one player.');
