@@ -1,5 +1,5 @@
 <template name="CreateGame">
-	<form class="create-game-form">
+	<div class="create-game-form">
 		<fieldset>
 			<legend>Create Game</legend>
 
@@ -8,22 +8,22 @@
 
 				<label for="players">Select Players</label>
 				<select id="players" multiple>
+					<optgroup label="Users">
 					{{#each users }}
 						<option value="{{ this._id }}">{{ this.username }}</option>
 					{{/each}}
+					</optgroup>
 				</select>
-			</div>
 
-			<hr>
+				<br>
 
-			<div class="field">
-				<h2>Holes</h2>
-
-				<label for="numberholes18">Number of Holes</label>
-				<p class="radio-options">
-					<label>9<input type="radio" name="numberholes" value="9"></label>
-					<label>18<input id="numberholes18" type="radio" name="numberholes" value="18" checked></label>
-				</p>
+				<form id="add-one-time-player">
+					<label for="onetimeplayers">Add One Time Players</label>
+					<div class="inline-field">
+						<input id="onetimeplayers" type="text">
+						<button id="onetimeplayersbtn" class="btn small" type="submit">Add+</button>
+					</div>
+				</form>
 			</div>
 
 			<hr>
@@ -43,6 +43,14 @@
 
 				<label for="newcourse">Create New Course</label>
 				<input id="newcourse" type="text" placeholder="Course Name">
+
+					<br>
+					<label for="numberholes18">Number of Holes</label>
+					<p class="radio-options">
+						<label>9<input type="radio" name="numberholes" value="9"></label>
+						<label>18<input id="numberholes18" type="radio" name="numberholes" value="18" checked></label>
+					</p>
+
 			</div>
 
 			<hr>
@@ -50,5 +58,5 @@
 			<button class="btn" type="button" id="creategame">Start Game</button>
 
 		</fieldset>
-	</form>
+	</div>
 </template>

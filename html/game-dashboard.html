@@ -1,7 +1,47 @@
 <template name="GameDashboard">
-	<h2>We got a game going on!</h2>
+	<h2>{{ game.course }}</h2>
 
-	<p>Course is: {{ game.course }}</p>
+	<h2>Players</h2>
+	<ul class="player-list">
+	{{#each game.players }}
+		{{> playerListItem }}
+	{{/each}}
+	</ul>
+
+	<h2>Holes</h2>
+
+	<ul class="hole-list">
+
+	</ul>
 
 
+	<aside class="game-meta">
+		<p>Game Started at {{ game.created }}</p>
+
+		<div class="add-players">
+			<button class="btn small" id="addplayertogame" type="button">Add Player To Game</button>
+			<br><br>
+
+			{{#if users }}
+			<label for="addplayerstogame">Add Users</label>
+			<select id="addplayerstogame">
+				<option value="">Select User</option>
+				{{#each users }}
+					<option value="{{ this._id }}">{{ this.username }}</option>
+				{{/each}}
+			</select>
+			{{/if}}
+
+			<br>
+			<form id="add-one-time-player">
+				<label for="onetimeplayers">Add One Time Players</label>
+				<div class="inline-field">
+					<input id="onetimeplayers" type="text">
+					<button id="onetimeplayersbtn" class="btn small" type="submit">Add+</button>
+				</div>
+			</form>
+
+		</div>
+	</aside>
+	<input type="hidden" id="gameid" value="{{ game._id }}">
 </template>

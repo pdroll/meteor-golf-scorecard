@@ -40,15 +40,28 @@ Router.route('/game/:_id', function () {
 
 	if (this.ready()) {
 
-		var game = Game.findOne(this.params._id);
+		game = Game.findOne(this.params._id);
 
 		if(!game){
 			this.redirect('/');
 		}
 
+
+		var gameUserIds = [];
+		game.players.forEach(function(el, ix){
+			if(el._id){
+				gameUserIds.push(el._id);
+			}
+		});
+
+		var users = User.find({_id : {$nin : gameUserIds}}).fetch();
+
 		this.render('GameDashboard', {
 			data: function () {
-				return {game: game}
+				return {
+					game: game,
+					users: users
+				}
 			}
 		});
 	} else {

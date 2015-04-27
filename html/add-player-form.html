@@ -1,0 +1,24 @@
+<template name="addPlayerForm">
+	<div class="field">
+		<h2>Players</h2>
+
+		<label for="players">Select Players</label>
+		<select id="players" multiple>
+			<optgroup label="Users">
+			{{#each users }}
+				<option value="{{ this._id }}">{{ this.username }}</option>
+			{{/each}}
+			</optgroup>
+		</select>
+
+		<br>
+
+		<form id="add-one-time-player">
+			<label for="onetimeplayers">Add One Time Players</label>
+			<div class="inline-field">
+				<input id="onetimeplayers" type="text">
+				<button id="onetimeplayersbtn" class="btn small" type="submit">Add+</button>
+			</div>
+		</form>
+	</div>
+</template>

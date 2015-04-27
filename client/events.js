@@ -2,6 +2,26 @@
 // Dashboard Events
 Template.CreateGame.events({
 
+
+	'submit #add-one-time-player' : function(e, template){
+		e.preventDefault();
+		var $input = $('#onetimeplayers'),
+			$playersSelect = $('#players'),
+			$oneTimeGroup = $('#oneTimeGroup'),
+			name = $input.val();
+
+		if(name){
+			if(!$oneTimeGroup.length){
+				$oneTimeGroup = $('<optgroup id="oneTimeGroup" label="One Time Players">').appendTo($playersSelect);
+			}
+
+			$oneTimeGroup.append('<option value="' + name + '" selected>' + name + '</option>');
+
+			$input.val('');
+		}
+
+	},
+
 	//
 	// Create new Game
 	'click #creategame': function (e, template) {
@@ -18,8 +38,23 @@ Template.CreateGame.events({
 
 		if(playerIds && playerIds.length){
 			playerIds.forEach(function(el, ix){
-				users.push(User.findOne(el));
+				var u = User.findOne(el);
+
+				if(u){
+					users.push({
+						name : u.username,
+						_id  : u. _id,
+						id   : u. _id
+					});
+				} else {
+					// Random ID for one-time players
+					users.push({
+						name : el,
+						id : Math.random().toString(36).substring(7)
+					});
+				}
 			});
+
 
 			if(existingCourse){
 				// @todo Handle Existing Course
@@ -34,6 +69,9 @@ Template.CreateGame.events({
 
 			gameTemplate = Game.CreateNew(users,holes,courseName);
 
+			console.log('GameTemplate');
+			console.log(gameTemplate);
+
 			var newGame = Meteor.call('InsertGame', gameTemplate, function(err, gameId){
 				if(err){
 					console.log('Error with InsertGame');
@@ -45,6 +83,32 @@ Template.CreateGame.events({
 
 		} else {
 			alert('Please select at least one player.');
+		}
+	},
+});
+
+
+Template.GameDashboard.events({
+
+	//
+	// Add Users to Existing Games
+	'change #addplayerstogame' : function(e, template){
+		var $select = $('#addplayerstogame'),
+			newUser = User.findOne($select.val());
+
+		Game.AddPlayer($('#gameid').val(), newUser);
+		$select.val('');
+	},
+
+	'submit #add-one-time-player' : function(e,template){
+		e.preventDefault();
+
+		var $input = $('#onetimeplayers'),
+			playerName = $input.val();
+
+		if(playerName){
+			Game.AddPlayer($('#gameid').val(), playerName);
+			$input.val('');
 		}
 	}
 });

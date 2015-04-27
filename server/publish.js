@@ -9,3 +9,10 @@ Meteor.publish("users", function () {
 Meteor.publish("courses", function () {
 	return Course.find();
 });
+
+
+Game.allow({
+	update: function (userId, document, fieldNames, modifier) {
+		return true;
+	}
+});

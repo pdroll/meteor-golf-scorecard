@@ -1,6 +1,22 @@
 <template name="gameListItem">
-	<li>
-		Game
-		{{ this.createdFormatted }}
+	<li class="game-list-item">
+		<div class="info">
+			<strong class="name">{{ this.course }}</strong>
+			<em class="time">Started {{ timeAgo }}</em>
+			<div class="ellipsis">
+				<p class="player-list">
+					<strong>With players: </strong>
+					{{#each this.players}}
+						<span>{{ this.name }}</span>
+					{{/each}}
+				</p>
+			</div>
+		</div>
+
+		<div class="actions">
+		{{#unless this.isCompleted }}
+			<a class="btn small" href="/game/{{ this._id }}">View Game</a>
+		{{/unless }}
+		</div>
 	</li>
 </template>
