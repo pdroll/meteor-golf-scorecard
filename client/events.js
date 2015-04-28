@@ -69,17 +69,9 @@ Template.CreateGame.events({
 
 			gameTemplate = Game.CreateNew(users,holes,courseName);
 
-			console.log('GameTemplate');
-			console.log(gameTemplate);
+			var newGameId = Game.InsertTemplate(gameTemplate);
 
-			var newGame = Meteor.call('InsertGame', gameTemplate, function(err, gameId){
-				if(err){
-					console.log('Error with InsertGame');
-					console.log(err)
-				}
-
-				window.location.href = '/game/' + gameId;
-			});
+			window.location.href = '/game/' + newGameId;
 
 		} else {
 			alert('Please select at least one player.');
@@ -110,5 +102,10 @@ Template.GameDashboard.events({
 			Game.AddPlayer($('#gameid').val(), playerName);
 			$input.val('');
 		}
+	},
+
+	'click .removePlayerFromGame' : function(e){
+		e.preventDefault();
+		Game.RemovePlayer($('#gameid').val(), this.id);
 	}
 });

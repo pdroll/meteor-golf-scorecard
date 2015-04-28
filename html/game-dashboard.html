@@ -1,10 +1,19 @@
 <template name="GameDashboard">
+	<input type="hidden" id="gameid" value="{{ game._id }}">
 	<h2>{{ game.course }}</h2>
 
 	<h2>Players</h2>
 	<ul class="player-list">
 	{{#each game.players }}
-		{{> playerListItem }}
+		<li>
+			<strong>{{ this.name }}</strong>
+			{{#if isCreator }}*{{/if }}
+			<p class="player-score">{{ this.strokes }} ({{ this.score }})</p>
+
+			{{#if canDeletePlayer}}
+				<button type="button" class="text-btn removePlayerFromGame">Remove User</button>
+			{{/if}}
+		</li>
 	{{/each}}
 	</ul>
 
@@ -16,7 +25,7 @@
 
 
 	<aside class="game-meta">
-		<p>Game Started at {{ game.created }}</p>
+		<p>This game was started at {{ formattedTime game.created }} by {{ creatorName }}.</p>
 
 		<div class="add-players">
 			<button class="btn small" id="addplayertogame" type="button">Add Player To Game</button>
@@ -42,6 +51,7 @@
 			</form>
 
 		</div>
+
 	</aside>
-	<input type="hidden" id="gameid" value="{{ game._id }}">
+
 </template>

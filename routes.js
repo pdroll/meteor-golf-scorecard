@@ -48,11 +48,14 @@ Router.route('/game/:_id', function () {
 
 
 		var gameUserIds = [];
-		game.players.forEach(function(el, ix){
-			if(el._id){
-				gameUserIds.push(el._id);
-			}
-		});
+
+		if(game.players){
+			game.players.forEach(function(el, ix){
+				if(el._id){
+					gameUserIds.push(el._id);
+				}
+			});
+		}
 
 		var users = User.find({_id : {$nin : gameUserIds}}).fetch();
 

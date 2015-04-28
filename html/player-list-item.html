@@ -2,5 +2,9 @@
 	<li>
 		<strong>{{ this.name }}</strong>
 		<p class="player-score">{{ this.strokes }} ({{ this.score }})</p>
+
+		{{#if canDelete}}
+			<button type="button" class="text-btn removePlayerFromGame">Remove User</button>
+		{{/if}}
 	</li>
 </template>
