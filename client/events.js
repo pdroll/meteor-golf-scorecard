@@ -1,3 +1,13 @@
+Template.Dashboard.events({
+
+	'click .js-close-alert' : function(e){
+		e.preventDefault();
+		var alertDiv = e.target.parentNode;
+		alertDiv.parentNode.removeChild(alertDiv);
+	}
+
+});
+
 //
 // Dashboard Events
 Template.CreateGame.events({
@@ -61,10 +71,10 @@ Template.CreateGame.events({
 			} else if(newCourse) {
 				courseName = $('#newcourse').val();
 
-			}
+				for (var i = 0; i < numberholes; ++i) {
+					holes.push(Hole.CreateNew(users, (i + 1)));
+				}
 
-			for (var i = 0; i < numberholes; ++i) {
-				holes.push(Hole.CreateNew(users));
 			}
 
 			gameTemplate = Game.CreateNew(users,holes,courseName);
@@ -83,6 +93,21 @@ Template.CreateGame.events({
 Template.GameDashboard.events({
 
 	//
+	// Toggle Add player form
+
+	'click #addplayertogame' : function(e, template){
+		var section = template.find('#addplayersform');
+
+		console.log(section);
+
+		if(section.getAttribute('data-ui-open')){
+			section.removeAttribute('data-ui-open');
+		} else {
+			section.setAttribute('data-ui-open', true);
+		}
+	},
+
+	//
 	// Add Users to Existing Games
 	'change #addplayerstogame' : function(e, template){
 		var $select = $('#addplayerstogame'),
@@ -92,6 +117,8 @@ Template.GameDashboard.events({
 		$select.val('');
 	},
 
+	//
+	// Add one time player to game
 	'submit #add-one-time-player' : function(e,template){
 		e.preventDefault();
 
@@ -104,8 +131,13 @@ Template.GameDashboard.events({
 		}
 	},
 
+
+	//
+	// Remove any player from game
 	'click .removePlayerFromGame' : function(e){
 		e.preventDefault();
-		Game.RemovePlayer($('#gameid').val(), this.id);
+		if(confirm('Are you sure you want to remove ' + this.name + ' from the game? Their scores will not be able to be recovered.')){
+			Game.RemovePlayer($('#gameid').val(), this.id);
+		}
 	}
 });

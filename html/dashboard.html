@@ -1,7 +1,9 @@
 <template name="Dashboard">
 	{{#if error }}
-		<aside class="errors">
+		<aside class="alert alert-dismissible alert-warning">
+			<button type="button" class="close js-close-alert">×</button>
 			<p>{{ error }}</p>
+
 		</aside>
 	{{/if}}
 
@@ -15,5 +17,5 @@
 	</ul>
 
 
-	<a class="btn" href="/create-game">Create New Game</a>
+	<a class="btn btn-primary  btn-lg" href="/create-game">Create New Game</a>
 </template>

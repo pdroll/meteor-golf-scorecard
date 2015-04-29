@@ -33,5 +33,26 @@ Template.GameDashboard.helpers({
 
 	formattedTime : function(dateStr){
 		return moment(dateStr).format('llll');
+	},
+
+	playerName : function(player){
+		var game = Template.instance().data.game,
+			name = '';
+
+		game.players.forEach(function(el){
+			if(el.id === player.id){
+				name = el.name;
+				return;
+			}
+		});
+
+		return name;
+	},
+
+	holeUrl : function(){
+		var game =  Template.instance().data.game;
+
+		return '/game/' + game._id + '/' + this.number;
+
 	}
 });

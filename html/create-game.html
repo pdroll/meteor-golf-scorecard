@@ -1,5 +1,5 @@
 <template name="CreateGame">
-	<div class="create-game-form">
+	<div class="create-game-form well">
 		<fieldset>
 			<legend>Create Game</legend>
 
@@ -19,9 +19,11 @@
 
 				<form id="add-one-time-player">
 					<label for="onetimeplayers">Add One Time Players</label>
-					<div class="inline-field">
-						<input id="onetimeplayers" type="text">
-						<button id="onetimeplayersbtn" class="btn small" type="submit">Add+</button>
+					<div class="input-group">
+						<input id="onetimeplayers" type="text" class="form-control" placeholder="One Time Player Name">
+						<span class="input-group-btn">
+							<button id="onetimeplayersbtn" class="btn btn-default" type="submit" >Add +</button>
+						</span>
 					</div>
 				</form>
 			</div>
@@ -47,15 +49,15 @@
 					<br>
 					<label for="numberholes18">Number of Holes</label>
 					<p class="radio-options">
-						<label>9<input type="radio" name="numberholes" value="9"></label>
-						<label>18<input id="numberholes18" type="radio" name="numberholes" value="18" checked></label>
+						<label><strong>9</strong> <input type="radio" name="numberholes" value="9"></label>
+						<label><strong>18</strong> <input id="numberholes18" type="radio" name="numberholes" value="18" checked></label>
 					</p>
 
 			</div>
 
 			<hr>
 
-			<button class="btn" type="button" id="creategame">Start Game</button>
+			<button class="btn btn-primary btn-lg" type="button" id="creategame">Start Game</button>
 
 		</fieldset>
 	</div>
