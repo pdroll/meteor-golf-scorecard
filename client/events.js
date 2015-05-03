@@ -98,8 +98,6 @@ Template.GameDashboard.events({
 	'click #addplayertogame' : function(e, template){
 		var section = template.find('#addplayersform');
 
-		console.log(section);
-
 		if(section.getAttribute('data-ui-open')){
 			section.removeAttribute('data-ui-open');
 		} else {

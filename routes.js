@@ -14,6 +14,8 @@ Router.onBeforeAction(function () {
   }
 });
 
+//
+// Main Dashboard
 Router.route('/', function () {
 	this.render('Dashboard', {
 		data: function () {
@@ -23,7 +25,8 @@ Router.route('/', function () {
 	});
 });
 
-
+//
+// Create New Game
 Router.route('/create-game', function () {
 	this.render('CreateGame', {
 		data: {
@@ -33,19 +36,19 @@ Router.route('/create-game', function () {
 	});
 });
 
-
+//
+// Game Dashboard
 Router.route('/game/:_id', function () {
 
 	this.wait(Meteor.subscribe('games', this.params._id));
 
 	if (this.ready()) {
 
-		game = Game.findOne(this.params._id);
+		var game = Game.findOne(this.params._id);
 
 		if(!game){
 			this.redirect('/');
 		}
-
 
 		var gameUserIds = [];
 
@@ -73,7 +76,50 @@ Router.route('/game/:_id', function () {
 });
 
 
+//
+// Hole page
+Router.route('/game/:_id/:_hole', function () {
 
+
+	this.wait(Meteor.subscribe('games', this.params._id));
+
+	if (this.ready()) {
+
+		var game = Game.findOne(this.params._id);
+
+		if(!game){
+			this.redirect('/');
+		}
+
+		var _holeId = parseInt(this.params._hole, 10);
+			hole = false;
+
+		game.holes.some(function(el){
+
+			if(el.number === _holeId){
+				hole = el;
+			}
+			return el.number === _holeId;
+		});
+
+		if(!hole){
+			this.redirect('/');
+		}
+
+		this.render('Hole', {
+			data: function () {
+				return {
+					game: game,
+					hole: hole
+				}
+			}
+		});
+
+	} else {
+		this.render('Loading');
+	}
+
+});
 
 //
 // 404
