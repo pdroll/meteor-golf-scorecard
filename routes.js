@@ -65,8 +65,8 @@ Router.route('/game/:_id', function () {
 		this.render('GameDashboard', {
 			data: function () {
 				return {
-					game: game,
-					users: users
+					game  : game,
+					users : users
 				}
 			}
 		});
@@ -91,26 +91,40 @@ Router.route('/game/:_id/:_hole', function () {
 			this.redirect('/');
 		}
 
-		var _holeId = parseInt(this.params._hole, 10);
-			hole = false;
+		var holeNum = parseInt(this.params._hole, 10),
+			prevHoleNum = holeNum - 1,
+			nextHoleNum = holeNum + 1,
+			hole = false,
+			prevHole = false,
+			nextHole = false;
 
 		game.holes.some(function(el){
-
-			if(el.number === _holeId){
+			if(el.number === prevHoleNum){
+				prevHole = el;
+			}
+			if(el.number === holeNum){
 				hole = el;
 			}
-			return el.number === _holeId;
+			if(el.number === nextHoleNum){
+				nextHole = el;
+			}
+			if(prevHole && hole && nextHole){
+				return true;
+			}
+			return false;
 		});
 
 		if(!hole){
-			this.redirect('/');
+			this.redirect('/game/'+ game._id);
 		}
 
 		this.render('Hole', {
 			data: function () {
 				return {
-					game: game,
-					hole: hole
+					game     : game,
+					hole     : hole,
+					prevHole : prevHole,
+					nextHole : nextHole
 				}
 			}
 		});

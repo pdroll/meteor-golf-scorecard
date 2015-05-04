@@ -1,3 +1,23 @@
 <template name="Hole">
-	<h1>Hole</h1>
+	<h1>Hole {{ hole.number }}</h1>
+	<h2>Par {{ hole.par }}</h2>
+	<nav class="holenav">
+		{{#if prevHole}}
+			<a href="/game/{{ game._id }}/{{ prevHole.number }}">&lt; Previous Hole</a>
+		{{/if}}
+		{{#if nextHole}}
+			<a href="/game/{{ game._id }}/{{ nextHole.number }}">Next Hole &gt;</a>
+		{{else}}
+			<a href="#0">Finish Game</a>
+		{{/if}}
+	</nav>
+
+	<ul class="hole-user-list">
+		{{#each hole.players}}
+			<li>
+				<strong>{{playerName this}}</strong>
+			</li>
+		{{/each}}
+	</ul>
+
 </template>
