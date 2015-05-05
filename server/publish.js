@@ -1,5 +1,14 @@
 Meteor.publish("games", function () {
-	return Game.find();
+
+	//
+	// Only publish a game to a user if they
+	// created the game OR are a player in the game
+	return Game.find({
+		$or: [
+			{createdBy : this.userId},
+			{players : {$elemMatch : {id: this.userId }}}
+		]
+	});
 });
 
 Meteor.publish("users", function () {
