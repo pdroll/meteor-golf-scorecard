@@ -1,6 +1,11 @@
 <template name="Hole">
+	<a href="/game/{{ game._id }}">Game Overview</a>
+
 	<h1>Hole {{ hole.number }}</h1>
-	<h2>Par <span id="hole-par">{{ hole.par }}</span></h2>
+	<h2>
+		Par <input class="narrow" id="hole-par" type="tel" disabled value="{{ hole.par }}">
+		<button class="btn btn-small btn-link" id="edit-par">Edit Par</button>
+	</h2>
 	<nav class="holenav">
 		{{#if prevHole}}
 			<a href="/game/{{ game._id }}/{{ prevHole.number }}">&lt; Previous Hole</a>
@@ -21,7 +26,7 @@
 					<span class="input-group-btn">
 						<button class="btn btn-default js-change-score js-decrease" type="submit">-</button>
 					</span>
-					<input type="number" class="form-control js-hole-score" min="1" value="{{this.score}}">
+					<input type="tel" class="form-control js-hole-score" min="1" value="{{this.score}}">
 					<span class="input-group-btn">
 						<button class="btn btn-default js-change-score js-increase" type="submit">+</button>
 					</span>
@@ -29,5 +34,10 @@
 			</li>
 		{{/each}}
 	</ul>
+
+	<h2>Hole Details</h2>
+	<textarea id="hole-notes" resize="none">
+		{{ hole.notes }}
+	</textarea>
 
 </template>

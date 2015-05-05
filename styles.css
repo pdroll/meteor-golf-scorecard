@@ -138,3 +138,23 @@ hr {
 }
 
 .well { text-align: center; }
+
+
+input {
+	text-align: center;
+}
+
+input[disabled],
+textarea[disabled] {
+	border: none;
+	background: transparent;
+}
+
+input.narrow {
+	width: 40px;
+}
+
+textarea {
+	display: block;
+	width: 100%;
+}

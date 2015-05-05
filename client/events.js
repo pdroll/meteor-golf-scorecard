@@ -149,7 +149,7 @@ Template.Hole.events({
 			newScore;
 
 		if(!currentScore) {
-			newScore = parseInt($('#hole-par').text(), 10);
+			newScore = parseInt($('#hole-par').val(), 10);
 		} else {
 			if($btn.is('.js-decrease')){
 				newScore = (currentScore <= 1) ?  1 :  (currentScore - 1);
