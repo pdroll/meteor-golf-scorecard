@@ -139,3 +139,48 @@ Template.GameDashboard.events({
 		}
 	}
 });
+
+Template.Hole.events({
+
+	'click .js-change-score' : function(e){
+		var $btn = $(e.target),
+			$input = $btn.closest('.js-hole-score-control').find('.js-hole-score'),
+			currentScore = parseInt($input.val(), 10),
+			newScore;
+
+		if(!currentScore) {
+			newScore = parseInt($('#hole-par').text(), 10);
+		} else {
+			if($btn.is('.js-decrease')){
+				newScore = (currentScore <= 1) ?  1 :  (currentScore - 1);
+			} else {
+				newScore = currentScore + 1;
+			}
+		}
+
+		if(newScore !== currentScore){
+			$input.val(newScore).trigger('blur');
+		}
+	},
+
+	'blur .js-hole-score' : function(e){
+		var $input = $(e.target),
+			val = parseInt($input.val(), 10);
+
+
+
+		if(val){
+			var game = Template.instance().data.game;
+			this.score = val;
+
+			Game.SaveUpdate(game);
+
+			Game.UpdateUserScore(game,this.id);
+
+			$input.val(val);
+		} else {
+			$input.val('');
+		}
+
+	}
+});
