@@ -149,3 +149,13 @@ Router.route('/(.*)', function(){
 		}
 	});
 });
+
+
+//
+// Scroll to top on page load
+if(Meteor.isClient){
+	Router.onAfterAction(function(){
+		$('body, html').stop().animate({scrollTop : 0}, 300)
+	});
+
+}

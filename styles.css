@@ -170,10 +170,16 @@ input[disabled],
 textarea[disabled] {
 	border: none;
 	background: transparent;
+	padding: 0;
+	color: #6f6f6f;
+	-webkit-text-fill-color: #6f6f6f;
+	-webkit-opacity: 1;
+	opacity: 1;
 }
 
 input.narrow {
-	width: 40px;
+	width: 65px;
+	padding: 8px 12px;
 }
 
 textarea {

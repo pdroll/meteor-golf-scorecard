@@ -3,14 +3,12 @@
 		<div class="info">
 			<strong class="name">{{ this.course }}</strong>
 			<em class="time">Started {{ timeAgo }}</em>
-			<div class="ellipsis">
-				<p class="player-list">
-					<strong>With players: </strong>
-					{{#each this.players}}
-						<span>{{ this.name }}</span>
-					{{/each}}
-				</p>
-			</div>
+			<p class="player-list">
+				<strong>With players: </strong>
+				{{#each this.players}}
+					<span>{{ this.name }}</span>
+				{{/each}}
+			</p>
 		</div>
 
 		<div class="actions">
