@@ -171,8 +171,8 @@ textarea[disabled] {
 	border: none;
 	background: transparent;
 	padding: 0;
-	color: #6f6f6f;
-	-webkit-text-fill-color: #6f6f6f;
+	color: #222;
+	-webkit-text-fill-color: #222;
 	-webkit-opacity: 1;
 	opacity: 1;
 }
@@ -198,4 +198,8 @@ textarea {
 	display: table-cell;
 	width: 50%;
 	text-align: center;
+}
+
+[data-completed] .game-action {
+	display: none !important;
 }

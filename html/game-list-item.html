@@ -2,9 +2,13 @@
 	<li class="game-list-item">
 		<div class="info">
 			<strong class="name">{{ this.course }}</strong>
-			<em class="time">Started {{ timeAgo }}</em>
+			{{#if this.completed}}
+				<em class="time">{{ finishedTime }}</em>
+			{{else}}
+				<em class="time">Started {{ timeAgo }}</em>
+			{{/if}}
 			<p class="player-list">
-				<strong>With players: </strong>
+				<strong>Players: </strong>
 				{{#each this.players}}
 					<span>{{ this.name }}</span>
 				{{/each}}
@@ -12,9 +16,7 @@
 		</div>
 
 		<div class="actions">
-		{{#unless this.isCompleted }}
 			<a class="btn btn-sm btn-default" href="/game/{{ this._id }}">View Game</a>
-		{{/unless }}
 		</div>
 	</li>
 </template>

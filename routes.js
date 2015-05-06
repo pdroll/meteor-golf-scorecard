@@ -19,8 +19,27 @@ Router.onBeforeAction(function () {
 Router.route('/', function () {
 	this.render('Dashboard', {
 		data: function () {
-			var games = Game.find({}, {sort : [['created', 'desc']]})
-			return {games: games};
+			var games = Game.find({'completed': false}, {sort : [['created', 'desc']]}),
+				completeGames = Game.find({'completed': {$ne: false}}, {sort : [['created', 'desc']]});
+
+			return {
+				games: games,
+				completeGames : completeGames
+			};
+		}
+	});
+});
+
+//
+// Main Dashboard
+Router.route('completed-games', function () {
+	this.render('CompletedGames', {
+		data: function () {
+			var games = Game.find({'completed': {$ne: false}}, {sort : [['created', 'desc']]});
+
+			return {
+				games: games
+			};
 		}
 	});
 });
@@ -62,6 +81,18 @@ Router.route('/game/:_id', function () {
 
 		var users = User.find({_id : {$nin : gameUserIds}}).fetch();
 
+		//
+		// Sort Players by score
+		game.players.sort(function(a, b){
+			if(a.strokes > b.strokes){
+				return 1;
+			}
+			if(a.strokes < b.strokes){
+				return -1;
+			}
+			return 0;
+		});
+
 		this.render('GameDashboard', {
 			data: function () {
 				return {
@@ -89,6 +120,10 @@ Router.route('/game/:_id/:_hole', function () {
 
 		if(!game){
 			this.redirect('/');
+		}
+
+		if(game.completed){
+			this.redirect('/game/' + game._id);
 		}
 
 		var holeNum = parseInt(this.params._hole, 10),
@@ -141,10 +176,13 @@ Router.route('/(.*)', function(){
 	error = 'Page Not Found';
 	this.render('Dashboard', {
 		data: function () {
-			var games = Game.find({}, {sort : [['created', 'desc']]})
+			var games = Game.find({'completed': false}, {sort : [['created', 'desc']]}),
+				completeGames = Game.find({'completed': {$ne: false}}, {sort : [['created', 'desc']]});
+
 			return {
 				games: games,
-				error : 'Page Not Found'
+				completeGames : completeGames,
+				error: 'Page Not Found'
 			};
 		}
 	});
@@ -155,7 +193,7 @@ Router.route('/(.*)', function(){
 // Scroll to top on page load
 if(Meteor.isClient){
 	Router.onAfterAction(function(){
-		if ( $('input:focus, button:focus').length == 0) {
+		if ( $('input:focus, button:focus').length === 0) {
 			$('body, html').stop().animate({scrollTop : 0}, 300)
 		}
 	});

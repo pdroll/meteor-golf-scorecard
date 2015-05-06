@@ -1,0 +1,14 @@
+<template name="CompletedGames">
+
+	<h1>Golf Scorecard</h1>
+	<h2>Completed Games</h2>
+
+	<ul class="game-list">
+	{{#each games }}
+		{{> gameListItem }}
+	{{/each}}
+	</ul>
+
+	<p><a href="/">View Active Games or start New Game</a></p>
+
+</template>

@@ -7,8 +7,8 @@
 		</aside>
 	{{/if}}
 
-	<h1>Disc Golf App</h1>
-	<h2>{{ title }}</h2>
+	<h1>Golf Scorecard</h1>
+	<h2>Active Games</h2>
 
 	<ul class="game-list">
 	{{#each games }}
@@ -17,5 +17,9 @@
 	</ul>
 
 
-	<a class="btn btn-primary  btn-lg" href="/create-game">Create New Game</a>
+	<p><a class="btn btn-primary  btn-lg" href="/create-game">Create New Game</a></p>
+
+	{{#if completeGames}}
+		<p><a href="/completed-games/">View Completed Games</a></p>
+	{{/if}}
 </template>

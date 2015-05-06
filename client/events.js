@@ -1,3 +1,12 @@
+var finishGame = function(e, template){
+	e.preventDefault();
+	if(confirm('Are you sure you want to finish this game? You will not be able to edit any scores after you do this.')){
+		var game = Template.instance().data.game;
+		Game.FinishGame(game);
+	}
+}
+
+
 Template.Dashboard.events({
 
 	'click .js-close-alert' : function(e){
@@ -108,10 +117,11 @@ Template.GameDashboard.events({
 	//
 	// Add Users to Existing Games
 	'change #addplayerstogame' : function(e, template){
-		var $select = $('#addplayerstogame'),
+		var game = Template.instance().data.game,
+			$select = $('#addplayerstogame'),
 			newUser = User.findOne($select.val());
 
-		Game.AddPlayer($('#gameid').val(), newUser);
+		Game.AddPlayer(game, newUser);
 		$select.val('');
 	},
 
@@ -120,11 +130,12 @@ Template.GameDashboard.events({
 	'submit #add-one-time-player' : function(e,template){
 		e.preventDefault();
 
-		var $input = $('#onetimeplayers'),
+		var game = Template.instance().data.game,
+			$input = $('#onetimeplayers'),
 			playerName = $input.val();
 
 		if(playerName){
-			Game.AddPlayer($('#gameid').val(), playerName);
+			Game.AddPlayer(game, playerName);
 			$input.val('');
 		}
 	},
@@ -135,9 +146,13 @@ Template.GameDashboard.events({
 	'click .removePlayerFromGame' : function(e){
 		e.preventDefault();
 		if(confirm('Are you sure you want to remove ' + this.name + ' from the game? Their scores will not be able to be recovered.')){
-			Game.RemovePlayer($('#gameid').val(), this.id);
+			var game = Template.instance().data.game;
+			Game.RemovePlayer(game, this.id);
 		}
-	}
+	},
+
+	// Finish Game
+	'click #finish-game' : finishGame
 });
 
 Template.Hole.events({
@@ -238,5 +253,7 @@ Template.Hole.events({
 
 		$('#hole-notes').attr('disabled', 'disabled');
 		$('#edit-hole-notes').show();
-	}
+	},
+
+	'click #finish-game' : finishGame
 });

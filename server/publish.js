@@ -19,6 +19,22 @@ Meteor.publish("courses", function () {
 	return Course.find();
 });
 
+User.allow({
+
+	//
+	// Don't allow updates to user other than scores
+	update : function(userId, document, fieldNames, modifier){
+		console.log('UPDATE USER');
+		console.log(fieldNames);
+
+		if(fieldNames.length === 1 && fieldNames[0] === 'scores'){
+			return true;
+		}
+
+		return false;
+	}
+});
+
 
 Game.allow({
 
@@ -49,6 +65,14 @@ Game.allow({
 	// Protect certain fields, and only let players or creators update a game
 	update: function (userId, document, fieldNames, modifier) {
 
+
+		//
+		// Only allow updates to active games
+		if(document.completed){
+			return false;
+		}
+
+
 		//
 		// Protected  Fields
 		var protectedField = false;
@@ -76,6 +100,37 @@ Game.allow({
 		});
 
 		if(playerIds.indexOf(userId) >= 0){
+			return true;
+		}
+
+		return false;
+	}
+});
+
+Course.allow({
+	//
+	// Allow Inserts only from logged in users
+	insert : function(userId, document){
+
+		if(!userId){
+			return false;
+		}
+
+		if(document.name && document.holes){
+			return true;
+		}
+
+		return false;
+	},
+
+	//
+	// Allow Updates only from logged in users
+	update: function (userId, document, fieldNames, modifier) {
+		if(!userId){
+			return false;
+		}
+
+		if(document.name && document.holes){
 			return true;
 		}
 
