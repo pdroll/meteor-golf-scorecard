@@ -155,7 +155,9 @@ Router.route('/(.*)', function(){
 // Scroll to top on page load
 if(Meteor.isClient){
 	Router.onAfterAction(function(){
-		$('body, html').stop().animate({scrollTop : 0}, 300)
+		if ( $('input:focus, button:focus').length == 0) {
+			$('body, html').stop().animate({scrollTop : 0}, 300)
+		}
 	});
 
 }
