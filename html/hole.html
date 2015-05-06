@@ -4,8 +4,29 @@
 	<h1>Hole {{ hole.number }}</h1>
 	<h2>
 		Par <input class="narrow" id="hole-par" type="tel" disabled value="{{ hole.par }}">
-		<button class="btn btn-small btn-link" id="edit-par">Edit Par</button>
+		<button class="btn btn-small btn-link" type="button" id="edit-par">Edit Par</button>
 	</h2>
+
+	<ul class="hole-user-list">
+		{{#each hole.players}}
+			<li>
+				<strong>{{playerName this}}</strong>
+
+				<div class="score-wrap">
+					<div class="input-group js-hole-score-control">
+						<span class="input-group-btn">
+							<button class="btn btn-default js-change-score js-decrease" type="submit">-</button>
+						</span>
+						<input type="tel" class="form-control js-hole-score" min="1" value="{{this.score}}">
+						<span class="input-group-btn">
+							<button class="btn btn-default js-change-score js-increase" type="submit">+</button>
+						</span>
+					</div>
+				</div>
+			</li>
+		{{/each}}
+	</ul>
+
 	<nav class="holenav">
 		{{#if prevHole}}
 			<a href="/game/{{ game._id }}/{{ prevHole.number }}">&lt; Previous Hole</a>
@@ -17,27 +38,10 @@
 		{{/if}}
 	</nav>
 
-	<ul class="hole-user-list">
-		{{#each hole.players}}
-			<li>
-				<strong>{{playerName this}}</strong>
-
-				<div class="input-group js-hole-score-control">
-					<span class="input-group-btn">
-						<button class="btn btn-default js-change-score js-decrease" type="submit">-</button>
-					</span>
-					<input type="tel" class="form-control js-hole-score" min="1" value="{{this.score}}">
-					<span class="input-group-btn">
-						<button class="btn btn-default js-change-score js-increase" type="submit">+</button>
-					</span>
-				</div>
-			</li>
-		{{/each}}
-	</ul>
-
-	<h2>Hole Details</h2>
-	<textarea id="hole-notes" resize="none">
-		{{ hole.notes }}
-	</textarea>
+	<h2>
+		Hole Details
+		<button class="btn btn-small btn-link" id="edit-hole-notes" type="button">Edit Details</button>
+	</h2>
+	<textarea id="hole-notes" disabled>{{ hole.notes }}</textarea>
 
 </template>

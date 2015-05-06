@@ -142,6 +142,8 @@ Template.GameDashboard.events({
 
 Template.Hole.events({
 
+	//
+	// Increase or Decrease Player's score
 	'click .js-change-score' : function(e){
 		var $btn = $(e.target),
 			$input = $btn.closest('.js-hole-score-control').find('.js-hole-score'),
@@ -163,24 +165,78 @@ Template.Hole.events({
 		}
 	},
 
+	//
+	// Save Player Score Update
 	'blur .js-hole-score' : function(e){
 		var $input = $(e.target),
 			val = parseInt($input.val(), 10);
-
-
 
 		if(val){
 			var game = Template.instance().data.game;
 			this.score = val;
 
-			Game.SaveUpdate(game);
-
-			Game.UpdateUserScore(game,this.id);
+			Game.SaveUserScore(game,this.id);
 
 			$input.val(val);
 		} else {
 			$input.val('');
 		}
 
+	},
+
+	//
+	// Edit a hole's Par
+	'click #edit-par' : function(e, template){
+		e.preventDefault();
+		$('#hole-par').removeAttr('disabled').focus();
+		$('#edit-par').hide();
+	},
+
+
+	//
+	// Save a change to a hole's par
+	'blur #hole-par' : function(e, template){
+		var templateData = Template.instance().data,
+			hole = templateData.hole,
+			game = templateData.game,
+			$input = $('#hole-par'),
+			newPar = parseInt($input.val(), 10);
+
+		if(newPar && newPar > 1 && newPar !== hole.par) {
+			hole.par = newPar;
+			Game.UpdateAllScores(game)
+			Game.SaveUpdate(game);
+
+		} else {
+			$input.val(hole.par);
+		}
+
+		$input.attr('disabled', 'disabled');
+		$('#edit-par').show();
+	},
+
+	//
+	// Edit a Hole's Notes
+	'click #edit-hole-notes' : function(e, template){
+		e.preventDefault();
+		$('#hole-notes').removeAttr('disabled').focus();
+		$('#edit-hole-notes').hide();
+	},
+
+	//
+	// Save Update to a hole's notes
+	'blur #hole-notes' : function(e, template){
+		var templateData = Template.instance().data,
+			hole = templateData.hole,
+			game = templateData.game,
+			newNotes = $('#hole-notes').val();
+
+		if(newNotes !== hole.notes){
+			hole.notes = newNotes;
+			Game.SaveUpdate(game);
+		}
+
+		$('#hole-notes').attr('disabled', 'disabled');
+		$('#edit-hole-notes').show();
 	}
 });
