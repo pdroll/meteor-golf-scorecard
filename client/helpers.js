@@ -10,7 +10,15 @@ var playerNameHelper = function(player){
 	});
 
 	return name;
-}
+};
+
+Template.CreateGame.helpers({
+
+	courseHoleCount : function(course){
+		return course.holes.length;
+	}
+});
+
 
 Template.gameListItem.helpers({
 

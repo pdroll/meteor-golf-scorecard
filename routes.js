@@ -19,8 +19,8 @@ Router.onBeforeAction(function () {
 Router.route('/', function () {
 	this.render('Dashboard', {
 		data: function () {
-			var games = Game.find({'completed': false}, {sort : [['created', 'desc']]}),
-				completeGames = Game.find({'completed': {$ne: false}}, {sort : [['created', 'desc']]});
+			var games = Game.find({'completed': false}, {sort : [['created', 'desc']]}).fetch(),
+				completeGames = Game.find({'completed': {$ne: false}}, {sort : [['created', 'desc']]}).fetch();
 
 			return {
 				games: games,
@@ -50,7 +50,7 @@ Router.route('/create-game', function () {
 	this.render('CreateGame', {
 		data: {
 			users   : User.find({}),
-			courses : Course.find({})
+			courses : Course.find({}).fetch()
 		}
 	});
 });

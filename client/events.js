@@ -76,7 +76,15 @@ Template.CreateGame.events({
 
 
 			if(existingCourse){
-				// @todo Handle Existing Course
+				course = Course.findOne(existingCourse);
+				holes = course.holes;
+
+				holes.forEach(function(h){
+					Hole.AddUsers(h, users);
+				});
+
+				courseName = course.name;
+
 			} else if(newCourse) {
 				courseName = $('#newcourse').val();
 
@@ -96,6 +104,31 @@ Template.CreateGame.events({
 			alert('Please select at least one player.');
 		}
 	},
+
+	'change #existingcourse' : function(e){
+		var $select = $(e.target),
+			val = $select.val(),
+			$newcourse = $('#newcourse'),
+			$newCourseHoles = $('#newcourse-holes');
+
+		if(val) {
+			$newcourse.val('');
+			$newCourseHoles.hide();
+
+		}
+	},
+
+	'change #newcourse': function(e){
+		var $select = $(e.target),
+			val = $select.val(),
+			$existingcourse = $('#existingcourse'),
+			$newCourseHoles = $('#newcourse-holes');
+
+		if(val) {
+			$existingcourse.val('');
+			$newCourseHoles.show();
+		}
+	}
 });
 
 

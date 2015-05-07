@@ -33,25 +33,30 @@
 				<h2>Course</h2>
 
 				{{#if courses.length }}
-					<label for="existingcourse">Select Course</label>
+					<label for="existingcourse">Existing Courses</label>
 					<select id="existingcourse">
+						<option value="">Select a Course</option>
 						{{#each courses }}
-							<option value="{{ this._id }}">{{ this.name }}</option>
+							<option value="{{ this._id }}">{{ this.name }} ({{ courseHoleCount this }} holes)</option>
 						{{/each}}
 					</select>
 
 					<p><em>OR</em></p>
 				{{/if}}
 
-				<label for="newcourse">Create New Course</label>
-				<input id="newcourse" type="text" placeholder="Course Name">
+				<div id="newcoursefield">
+					<label for="newcourse">Create New Course</label>
+					<input id="newcourse" type="text" placeholder="Course Name">
 
 					<br>
-					<label for="numberholes18">Number of Holes</label>
-					<p class="radio-options">
-						<label><strong>9</strong> <input type="radio" name="numberholes" value="9"></label>
-						<label><strong>18</strong> <input id="numberholes18" type="radio" name="numberholes" value="18" checked></label>
-					</p>
+					<div id="newcourse-holes" style="display: none;">
+						<label for="numberholes18">Number of Holes</label>
+						<p class="radio-options">
+							<label><strong>9</strong> <input type="radio" name="numberholes" value="9"></label>
+							<label><strong>18</strong> <input id="numberholes18" type="radio" name="numberholes" value="18" checked></label>
+						</p>
+					</div>
+				</div>
 
 			</div>
 

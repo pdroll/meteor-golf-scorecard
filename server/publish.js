@@ -24,8 +24,6 @@ User.allow({
 	//
 	// Don't allow updates to user other than scores
 	update : function(userId, document, fieldNames, modifier){
-		console.log('UPDATE USER');
-		console.log(fieldNames);
 
 		if(fieldNames.length === 1 && fieldNames[0] === 'scores'){
 			return true;
@@ -117,6 +115,7 @@ Course.allow({
 		}
 
 		if(document.name && document.holes){
+
 			return true;
 		}
 
