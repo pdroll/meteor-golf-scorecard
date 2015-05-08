@@ -55,7 +55,8 @@ Template.CreateGame.events({
 			holes = [],
 			gameTemplate;
 
-		if(playerIds && playerIds.length){
+
+		if((playerIds && playerIds.length ) && (newCourse.length || existingCourse.length)){
 			playerIds.forEach(function(el, ix){
 				var u = User.findOne(el);
 
@@ -101,7 +102,17 @@ Template.CreateGame.events({
 			window.location.href = '/game/' + newGameId;
 
 		} else {
-			alert('Please select at least one player.');
+
+			var str = '';
+			if(!playerIds || !playerIds.length){
+				str += 'Please select at least one player.';
+			}
+
+			if(!newCourse.length && !existingCourse.length){
+				str += ' Please select a course or enter the name of a new course.';
+			}
+
+			alert(str);
 		}
 	},
 

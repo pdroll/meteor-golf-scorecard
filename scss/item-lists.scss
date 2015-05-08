@@ -1,0 +1,68 @@
+
+.item-list,
+.player-list,
+.hole-list,
+.hole-user-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.item-list {
+	display: block;
+	padding: 0;
+	margin: 0;
+	text-align: left;
+	border: 1px solid #ccc;
+	border-bottom: 0;
+}
+
+.item-list-item {
+	position: relative;
+	list-style: none;
+	display: block;
+	padding: 1em;
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+
+
+	&:nth-child(odd){
+		background: #f9f9f9;
+	}
+
+	 p {
+		margin: 0;
+	}
+
+	.info {
+		padding-right: 100px;
+	}
+	.name{
+		font-size: 1.7em;
+		font-weight: normal;
+	}
+
+	.actions {
+		text-align: right;
+		position: absolute;
+		top: 50%;
+		right: 1em;
+		width: 100px;
+		margin-top: -18px;
+
+		strong {
+			font-weight: normal;
+			font-size: 2em;
+		}
+	}
+
+	.remove-item {
+		font-weight: normal;
+		font-size: .8em;
+		padding: 0;
+	}
+
+	.time {
+		font-size: .8em;
+	}
+}

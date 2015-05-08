@@ -1,0 +1,51 @@
+.addplayers {
+	margin-top: 1em;
+}
+
+.addplayer-content {
+	display: none;
+
+	&[data-ui-open] {
+		display: block;
+	}
+}
+
+
+.hole-list {
+	text-align: center;
+
+	> li {
+		display: inline-block;
+		width: 32%;
+		vertical-align: top;
+		margin-bottom: 1em;
+	}
+
+	ul,
+	ul li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		text-align: left;
+		clear: both;
+	}
+
+	.hole-score {
+		float: right;
+	}
+
+	.inner {
+		padding: 1em;
+		border: 1px solid #ccc;
+		max-width: 180px;
+		margin: 0 auto;
+	}
+
+
+}
+
+@media( max-width: 600px) {
+	.hole-list > li {
+		width: 49%;
+	}
+}

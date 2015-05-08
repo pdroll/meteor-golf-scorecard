@@ -1,49 +1,55 @@
 <template name="GameDashboard">
 	<section data-completed="{{game.completed}}">
-		<h1>{{ game.course }}</h1>
+		<h1 class="page-header">{{ game.course }}</h1>
 
-		<h2>Leaderboard</h2>
-		<ul class="player-list">
+		<h3>Leaderboard</h3>
+		<ul class="item-list">
 		{{#each game.players }}
-			<li>
-				<h3>{{ this.name }}</h3>
+			<li class="item-list-item">
+				<div class="info">
+				<strong class="name">{{ this.name }}</strong>
 				{{#if isCreator }}*{{/if }}
-				<p class="player-score">{{ this.strokes }} ({{ this.score }})</p>
 
 				{{#if canDeletePlayer}}
-					<button type="button" class="btn btn-link removePlayerFromGame game-action">Remove Player</button>
+					<p><button type="button" class="btn btn-link removePlayerFromGame game-action remove-item">Remove Player</button></p>
 				{{/if}}
+				</div>
+
+				<div class="actions">
+					<strong>{{ this.strokes }} ({{ this.score }})</strong>
+				</div>
 			</li>
 		{{/each}}
 		</ul>
 
-		<div class="addplayers well game-action" id="addplayersform">
-			<button class="btn btn-info btn-small" id="addplayertogame" type="button">Add Player To Game</button>
+		<p class="ctas">
+			<button class="btn btn-link game-action" id="addplayertogame" type="button">Add Player To Game</button>
+		</p>
 
-			<div class="addplayer-content">
-				{{#if users }}
-					<label for="addplayerstogame">Add Users</label>
-					<select id="addplayerstogame">
-						<option value="">Select User</option>
-						{{#each users }}
-							<option value="{{ this._id }}">{{ this.username }}</option>
-						{{/each}}
-					</select>
-					<br>
-				{{/if}}
+		<div class="addplayers well game-action addplayer-content" id="addplayersform">
 
-				<form id="add-one-time-player">
+			{{#if users }}
+				<label for="addplayerstogame">Add Users</label>
+				<select id="addplayerstogame">
+					<option value="">Select User</option>
+					{{#each users }}
+						<option value="{{ this._id }}">{{ this.username }}</option>
+					{{/each}}
+				</select>
+				<br>
+			{{/if}}
 
-					<label for="onetimeplayers">Add One Time Players</label>
-					<div class="input-group">
-						<input id="onetimeplayers" type="text" class="form-control">
-						<span class="input-group-btn">
-							<button id="onetimeplayersbtn" class="btn btn-default" type="submit">Add +</button>
-						</span>
-					</div>
+			<form id="add-one-time-player">
 
-				</form>
-			</div>
+				<label for="onetimeplayers">Add One Time Players</label>
+				<div class="input-group">
+					<input id="onetimeplayers" type="text" class="form-control">
+					<span class="input-group-btn">
+						<button id="onetimeplayersbtn" class="btn btn-default" type="submit">Add +</button>
+					</span>
+				</div>
+
+			</form>
 		</div>
 
 		<hr>
@@ -52,31 +58,35 @@
 		<ul class="hole-list">
 			{{#each game.holes}}
 			<li>
-				<h3>Hole {{ this.number }}</h3>
-				<p class="hole-par"><small>Par {{ this.par }}</small></p>
+				<div class="inner">
+					<h3>Hole {{ this.number }}</h3>
+					<p class="hole-par"><small>Par {{ this.par }}</small></p>
 
-				<ul>
-					{{#each this.players }}
-						<li>
-							<p>{{ playerName this }}:
-							{{#if this.score }}
-								<strong>{{this.score}}</strong>
-							{{else}}
-								&mdash;
-							{{/if}}
-							</p>
-						</li>
-					{{/each }}
-				</ul>
-				{{#unless game.completed}}
-					<a class="btn btn-small btn-default game-action" href="{{ holeUrl }}">Go to Hole {{ this.number }}</a>
-				{{/unless}}
+					<ul class="player-scores">
+						{{#each this.players }}
+							<li>
+								<p>{{ playerName this }}:
+								<strong class="hole-score">
+									{{#if this.score }}
+										{{this.score}}
+									{{else}}
+										&mdash;
+									{{/if}}
+								</strong>
+								</p>
+							</li>
+						{{/each }}
+					</ul>
+					{{#unless game.completed}}
+						<a class="btn btn-small btn-success btn-block game-action" href="{{ holeUrl }}">Go to Hole {{ this.number }}</a>
+					{{/unless}}
+				</div>
 			</li>
 			{{/each}}
 		</ul>
 
 		{{#unless game.completed}}
-			<p><button id="finish-game" type="button" class="btn btn-primary">Finish Game</button></p>
+			<p class="ctas"><button id="finish-game" type="button" class="btn btn-warning btn-lg">Finish Game</button></p>
 		{{/unless}}
 
 
@@ -84,7 +94,9 @@
 			<p><small>{{ creatorName }} started this game at {{ formattedTime game.created }}.</small></p>
 
 			{{#if game.completed}}
-			<p><small>This game was finished at {{ formattedTime game.completed }}.</small></p>
+				<p><small>This game was finished at {{ formattedTime game.completed }}.</small></p>
+					<p><small>Game lasted {{ duration }}.</small></p>
+
 			{{/if}}
 		</aside>
 

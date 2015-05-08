@@ -1,0 +1,13 @@
+
+.player-list span:after {
+	content: ",";
+}
+
+.player-list span:last-child:after {
+	display: none;
+}
+
+.ctas {
+	text-align: center;
+	margin: 2em 0;
+}

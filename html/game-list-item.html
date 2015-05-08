@@ -1,22 +1,24 @@
 <template name="gameListItem">
-	<li class="game-list-item">
+	<li class="item-list-item">
 		<div class="info">
 			<strong class="name">{{ this.course }}</strong>
-			{{#if this.completed}}
-				<em class="time">{{ finishedTime }}</em>
-			{{else}}
-				<em class="time">Started {{ timeAgo }}</em>
-			{{/if}}
 			<p class="player-list">
 				<strong>Players: </strong>
 				{{#each this.players}}
 					<span>{{ this.name }}</span>
 				{{/each}}
 			</p>
+			<p>
+			{{#if this.completed}}
+				<em class="time">{{ finishedTime }}</em>
+			{{else}}
+				<em class="time">Started {{ timeAgo }}</em>
+			{{/if}}
+			</p>
 		</div>
 
 		<div class="actions">
-			<a class="btn btn-sm btn-default" href="/game/{{ this._id }}">View Game</a>
+			<a class="btn btn-sm btn-success" href="/game/{{ this._id }}">View Game</a>
 		</div>
 	</li>
 </template>

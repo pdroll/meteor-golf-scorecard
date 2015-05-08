@@ -1,0 +1,51 @@
+
+.field {
+	display: block;
+	max-width: 400px;
+	margin: 0 auto 1em;
+}
+
+.field label {
+	display: block;
+
+}
+
+select,
+input[type="text"] {
+	display: block;
+	background: #fff;
+	border: 1px solid #ccc;
+	width: 100%;
+	padding: .5em;
+	border-radius: 3px;
+}
+
+select[multiple] {
+	min-height: 200px;
+}
+
+.radio-options label {
+	display: inline-block;
+	margin: 0 1em;
+}
+
+.radio-options input {
+	margin: 0 .5em;
+}
+
+
+
+.inline-field button,
+.inline-field input {
+	display: inline-block;
+}
+
+.inline-field button {
+	width: 20%;
+}
+
+.inline-field input {
+	width: 65%;
+}
+
+

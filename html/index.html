@@ -12,12 +12,20 @@
 
 <template name="AppLayout">
 
-	<main class="main-wrapper">
+	<nav class="navbar navbar-default">
+		<a class="navbar-brand" href="/">Golf Scorecard</a>
+		<div class="login-actions">
+			{{> loginButtons align="right"}}
+		</div>
+	</nav>
+
+
+	<main class="wrapper">
 		{{> yield}}
 	</main>
 
-	<footer class="signin-footer">
-		{{> loginButtons}}
+	<footer class="main-footer">
+		Created by <a href="https://twitter.com/PDroll" target="_blank">pDroll</a> using <a href="https://www.meteor.com/" target="_blank">Meteor.js</a>
 	</footer>
 </template>
 

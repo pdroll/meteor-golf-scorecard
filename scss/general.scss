@@ -1,0 +1,69 @@
+body {
+	background: #f7f7f7;
+}
+
+.wrapper {
+	width: 90%;
+	margin: 0 auto;
+	max-width: 800px;
+	padding: 20px 1px 1px;
+}
+
+html, body {
+	height: 100%;
+}
+
+main {
+	min-height: calc(100%  - 86px);
+}
+
+body .navbar {
+	margin-bottom: 0;
+}
+
+body .page-header {
+	margin-top: 0;
+}
+
+.well { text-align: center; }
+
+.login-actions {
+	float: right;
+	padding: 1em 1em 0 0;
+
+	.login-link-text {
+		color: #fff;
+	}
+}
+
+hr {
+	border: 1px solid #aaa;
+	border-width: 0 0 1px 0;
+	max-width: 400px;
+	margin: 2em auto;
+}
+
+.signin-footer {
+	padding: 2em 1em 1em;
+}
+
+
+.ellipsis {
+	display: block;
+	width: 100%;
+	position: relative;
+}
+
+.ellipsis > p {
+	max-width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.main-footer {
+	font-size: .8em;
+	text-align: center;
+	background: #eee;
+	padding: 1em;
+}

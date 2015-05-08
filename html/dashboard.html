@@ -7,12 +7,11 @@
 		</aside>
 	{{/if}}
 
-	<h1>Golf Scorecard</h1>
 
 	{{#if games.length}}
 		<h2>Active Games</h2>
 
-		<ul class="game-list">
+		<ul class="item-list">
 		{{#each games }}
 			{{> gameListItem }}
 		{{/each}}
@@ -20,9 +19,13 @@
 	{{/if}}
 
 
-	<p><a class="btn btn-primary  btn-lg" href="/create-game">Create New Game</a></p>
+	<div class="ctas">
+		<p><a class="btn btn-primary  btn-lg" href="/create-game">Start New Game</a></p>
+		{{#if completeGames.length}}
+			<p><a href="/completed-games/">View Completed Games</a></p>
+		{{/if}}
+	</div>
 
-	{{#if completeGames.length}}
-		<p><a href="/completed-games/">View Completed Games</a></p>
-	{{/if}}
+
+
 </template>

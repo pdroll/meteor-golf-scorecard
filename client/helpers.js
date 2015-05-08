@@ -27,7 +27,7 @@ Template.gameListItem.helpers({
 	},
 
 	finishedTime :  function(){
-		return moment(this.completed).format('ddd MMM Mo, YYYY');
+		return moment(this.completed).calendar();
 	}
 
 });
@@ -68,6 +68,41 @@ Template.GameDashboard.helpers({
 		var game =  Template.instance().data.game;
 
 		return '/game/' + game._id + '/' + this.number;
+
+	},
+
+	duration : function(){
+		var game =  Template.instance().data.game;
+
+		if(game.completed){
+
+			var gameStart = (new Date(game.created).getTime()),
+				gameEnd   = (new Date(game.completed).getTime())
+				hours     = moment.duration(gameEnd - gameStart, 'ms').hours(),
+				minutes   = moment.duration(gameEnd - gameStart, 'ms').minutes(),
+				str = '';
+
+				if(hours){
+					str += hours + ' hours';
+				}
+
+				if(hours && minutes){
+					str += ' and ';
+				}
+
+				if(minutes){
+					str += minutes + ' minutes';
+				}
+
+				if(!minutes && !hours){
+					str += moment.duration(gameEnd - gameStart, 'ms').seconds() + ' seconds';
+				}
+
+				return str;
+
+		} else {
+			return false;
+		}
 
 	}
 });

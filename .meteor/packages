@@ -10,3 +10,4 @@ iron:router
 accounts-ui
 accounts-password
 momentjs:moment
+fourseven:scss

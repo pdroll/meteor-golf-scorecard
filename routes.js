@@ -23,6 +23,7 @@ Router.route('/', function () {
 				completeGames = Game.find({'completed': {$ne: false}}, {sort : [['created', 'desc']]}).fetch();
 
 			return {
+				title : 'Golf Scorecard',
 				games: games,
 				completeGames : completeGames
 			};
@@ -176,8 +177,8 @@ Router.route('/(.*)', function(){
 	error = 'Page Not Found';
 	this.render('Dashboard', {
 		data: function () {
-			var games = Game.find({'completed': false}, {sort : [['created', 'desc']]}),
-				completeGames = Game.find({'completed': {$ne: false}}, {sort : [['created', 'desc']]});
+			var games = Game.find({'completed': false}, {sort : [['created', 'desc']]}).fetch(),
+				completeGames = Game.find({'completed': {$ne: false}}, {sort : [['created', 'desc']]}).fetch();
 
 			return {
 				games: games,
