@@ -1,0 +1,76 @@
+
+.hole-course {
+	margin: 0;
+	font-size: 1.1em;
+
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+
+body .hole-header {
+	margin-bottom: .4em;
+}
+
+.hole-par-section {
+	margin: .5em 0;
+
+	button {
+		margin-top: 8px;
+	}
+}
+
+body .hole-user-list {
+	border: 1px solid #ccc;
+	border-width: 1px 1px 0;
+	margin-bottom: 2em;
+}
+
+
+
+.hole-user-list li {
+	display: table;
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	padding: 1em .5em;
+
+	&:nth-child(odd){
+		background: #f9f9f9;
+	}
+
+}
+
+.hole-user-list strong,
+.hole-user-list .score-wrap {
+	display: table-cell;
+	width: 50%;
+	vertical-align: middle;
+}
+
+
+.holenav {
+	width: 100%;
+	display: table;
+}
+
+.holenav p {
+	display: table-cell;
+	width: 50%;
+	text-align: center;
+	padding: 0;
+
+	&:first-child {
+		padding-right: 5px;
+	}
+
+	&:last-child {
+		padding-left: 5px;
+	}
+
+	&:only-child {
+		padding: 0;
+	}
+
+}
+

@@ -1,11 +1,13 @@
 <template name="Hole">
-	<a href="/game/{{ game._id }}">Game Overview</a>
 
-	<h1>Hole {{ hole.number }}</h1>
-	<h2>
+	<div class="page-header hole-header">
+		<h3 class="hole-course"><a href="/game/{{ game._id }}">{{ game.course }}</a></h3>
+		<h1>Hole {{ hole.number }}</h1>
+	</div>
+	<h3 class="hole-par-section">
 		Par <input class="narrow" id="hole-par" type="tel" disabled value="{{ hole.par }}">
-		<button class="btn btn-small btn-link" type="button" id="edit-par">Edit Par</button>
-	</h2>
+		<button class="btn btn-small btn-link pull-right" type="button" id="edit-par">Edit Par</button>
+	</h3>
 
 	<ul class="hole-user-list">
 		{{#each hole.players}}
@@ -15,11 +17,11 @@
 				<div class="score-wrap">
 					<div class="input-group js-hole-score-control">
 						<span class="input-group-btn">
-							<button class="btn btn-default js-change-score js-decrease" type="submit">-</button>
+							<button class="btn btn-success js-change-score js-decrease" type="submit">-</button>
 						</span>
 						<input type="tel" class="form-control js-hole-score" min="1" value="{{this.score}}">
 						<span class="input-group-btn">
-							<button class="btn btn-default js-change-score js-increase" type="submit">+</button>
+							<button class="btn btn-success js-change-score js-increase" type="submit">+</button>
 						</span>
 					</div>
 				</div>
@@ -29,18 +31,18 @@
 
 	<nav class="holenav">
 		{{#if prevHole}}
-			<a href="/game/{{ game._id }}/{{ prevHole.number }}">&lt; Previous Hole</a>
+			<p><a class="btn btn-default btn-block" href="/game/{{ game._id }}/{{ prevHole.number }}">&lt; Previous Hole</a></p>
 		{{/if}}
 		{{#if nextHole}}
-			<a href="/game/{{ game._id }}/{{ nextHole.number }}">Next Hole &gt;</a>
+			<p><a class="btn btn-default  btn-block" href="/game/{{ game._id }}/{{ nextHole.number }}">Next Hole &gt;</a></p>
 		{{else}}
-			<button type="button" id="finish-game">Finish Game</button>
+			<p><button class="btn btn-warning btn-block" type="button" id="finish-game">Finish Game</button></p>
 		{{/if}}
 	</nav>
 
 	<h2>
 		Hole Details
-		<button class="btn btn-small btn-link" id="edit-hole-notes" type="button">Edit Details</button>
+		<button class="btn btn-small btn-link pull-right" id="edit-hole-notes" type="button">Edit Details</button>
 	</h2>
 	<textarea id="hole-notes" disabled>{{ hole.notes }}</textarea>
 

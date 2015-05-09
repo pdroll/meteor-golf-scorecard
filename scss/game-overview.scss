@@ -14,11 +14,30 @@
 .hole-list {
 	text-align: center;
 
+	h3 {
+		font-size: .9em;
+		margin: 0;
+	}
+
+	h3 strong {
+		display: block;
+		font-size: 4em;
+		font-weight: normal;
+	}
+
+	.hole-par {
+		font-style: italic;
+	}
+
 	> li {
 		display: inline-block;
 		width: 32%;
 		vertical-align: top;
 		margin-bottom: 1em;
+
+		&:nth-child(2n -1) .inner {
+			background: #f9f9f9;
+		}
 	}
 
 	ul,
@@ -30,8 +49,69 @@
 		clear: both;
 	}
 
+	.player-scores {
+		margin: 0 -1em 1em;
+	}
+
+	ul li {
+		display: table;
+		width: 100%;
+		padding: 4px 1em;
+
+		&:nth-child(odd) {
+			background: #f0f0f0;
+		}
+	}
+
+	.hole-score,
+	.hole-name {
+		display: table-cell;
+		margin: 0;
+		vertical-align: middle;
+	}
+
 	.hole-score {
+		position: relative;
 		float: right;
+		height: 2em;
+		width: 2em;
+		line-height: 1.9em;
+		display: block;
+		text-align: center;
+
+		&.birdie,
+		&.eagle,
+		&.bogey,
+		&.doublebogey {
+			border: 1px solid #999;
+		}
+
+
+		&.birdie,
+		&.eagle {
+			&,
+			&:before {
+				border-radius: 100%;
+			}
+		}
+
+
+		&.eagle,
+		&.doublebogey {
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top:  2px;
+				right: 2px;
+				bottom: 2px;
+				left: 2px;
+				border: 1px solid #999;
+			}
+		}
+
+
+
 	}
 
 	.inner {
@@ -47,5 +127,34 @@
 @media( max-width: 600px) {
 	.hole-list > li {
 		width: 49%;
+
+		&:nth-child(2n -1) .inner {
+			background: transparent;
+		}
+
+		&:nth-child(4n - 2) .inner,
+		&:nth-child(4n - 1) .inner {
+			background: #f9f9f9;
+		}
+	}
+}
+
+@media( max-width: 400px) {
+	.hole-list > li {
+		width: 100%;
+
+		.inner {
+			max-width: none;
+		}
+
+		&:nth-child(2n -1) .inner,
+		&:nth-child(4n - 2) .inner,
+		&:nth-child(4n - 1) .inner {
+			background: transparent;
+		}
+
+		&:nth-child(even) .inner {
+			background: #f9f9f9;
+		}
 	}
 }

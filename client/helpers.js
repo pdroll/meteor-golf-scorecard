@@ -104,6 +104,61 @@ Template.GameDashboard.helpers({
 			return false;
 		}
 
+	},
+
+	//
+	// Keep reference to Hole's par on each player
+	holePlayers : function( hole ){
+		var players = [];
+		hole.players.forEach(function(el){
+			el.holepar = hole.par;
+			players.push(el);
+		});
+
+		return players;
+	},
+
+	//
+	// How does score compare to par
+	scoreClass : function(){
+		if(!this.score){
+			return '';
+		}
+
+		var birdie = this.holepar - 1,
+			bogey = this.holepar + 1;
+
+		if(this.score === this.holepar){
+			return 'par';
+		}
+
+		if(this.score === birdie ){
+			return 'birdie';
+		}
+
+		if(this.score < birdie){
+			return 'eagle';
+		}
+
+		if(this.score === bogey){
+			return 'bogey';
+		}
+
+		if(this.score > bogey){
+			return 'doublebogey';
+		}
+
+		return '';
+	},
+
+	formattedScore : function(score){
+
+		if(score > 0){
+			return '+' + score;
+		} else {
+			return '' + score
+		}
+
 	}
 });
 

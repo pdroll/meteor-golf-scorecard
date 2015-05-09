@@ -16,7 +16,7 @@
 				</div>
 
 				<div class="actions">
-					<strong>{{ this.strokes }} ({{ this.score }})</strong>
+					<strong><small>({{ this.strokes }})</small> {{ formattedScore this.score }}</strong>
 				</div>
 			</li>
 		{{/each}}
@@ -59,26 +59,25 @@
 			{{#each game.holes}}
 			<li>
 				<div class="inner">
-					<h3>Hole {{ this.number }}</h3>
-					<p class="hole-par"><small>Par {{ this.par }}</small></p>
+					<h3>Hole <strong>{{ this.number }}</strong></h3>
+					<p class="hole-par">Par {{ this.par }}</p>
 
 					<ul class="player-scores">
-						{{#each this.players }}
+						{{#each holePlayers this }}
 							<li>
-								<p>{{ playerName this }}:
-								<strong class="hole-score">
+								<p class="hole-name">{{ playerName this }}:</p>
+								<strong class="hole-score {{ scoreClass  }}">
 									{{#if this.score }}
 										{{this.score}}
 									{{else}}
 										&mdash;
 									{{/if}}
 								</strong>
-								</p>
 							</li>
 						{{/each }}
 					</ul>
 					{{#unless game.completed}}
-						<a class="btn btn-small btn-success btn-block game-action" href="{{ holeUrl }}">Go to Hole {{ this.number }}</a>
+						<a class="btn btn-mini btn-success btn-block game-action" href="{{ holeUrl }}">Go to Hole</a>
 					{{/unless}}
 				</div>
 			</li>
@@ -86,7 +85,7 @@
 		</ul>
 
 		{{#unless game.completed}}
-			<p class="ctas"><button id="finish-game" type="button" class="btn btn-warning btn-lg">Finish Game</button></p>
+			<p class="ctas"><button id="finish-game" type="button" class="btn btn-warning btn-lg btn-block">Finish Game</button></p>
 		{{/unless}}
 
 
@@ -100,6 +99,6 @@
 			{{/if}}
 		</aside>
 
-		<p><a href="/">Home</a></p>
+		<p class="ctas"><a href="/">Return Home</a></p>
 	</section>
 </template>
