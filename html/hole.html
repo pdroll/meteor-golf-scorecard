@@ -1,12 +1,20 @@
 <template name="Hole">
 
 	<div class="page-header hole-header">
-		<h3 class="hole-course"><a href="/game/{{ game._id }}">{{ game.course }}</a></h3>
+		<h3 class="hole-course">
+			<a href="/game/{{ game._id }}">
+				<svg class="icon" viewBox="0 0 8 8"><use class="icon-left icon-small" xlink:href="#chevron-left"></use></svg>
+				{{ game.course }}
+			</a>
+		</h3>
 		<h1>Hole {{ hole.number }}</h1>
 	</div>
 	<h3 class="hole-par-section">
 		Par <input class="narrow" id="hole-par" type="tel" disabled value="{{ hole.par }}">
-		<button class="btn btn-small btn-link pull-right" type="button" id="edit-par">Edit Par</button>
+		<button class="btn btn-small btn-link pull-right" type="button" id="edit-par">
+			Edit Par
+			<svg class="icon" viewBox="0 0 8 8"><use class="icon-edit" xlink:href="#pencil"></use></svg>
+		</button>
 	</h3>
 
 	<ul class="hole-user-list">
@@ -17,11 +25,15 @@
 				<div class="score-wrap">
 					<div class="input-group js-hole-score-control">
 						<span class="input-group-btn">
-							<button class="btn btn-success js-change-score js-decrease" type="submit">-</button>
+							<button class="btn btn-success js-change-score js-decrease" type="submit">
+								<svg class="icon" viewBox="0 0 8 8"><use class="icon-minus" xlink:href="#minus"></use></svg>
+							</button>
 						</span>
 						<input type="tel" class="form-control js-hole-score" min="1" value="{{this.score}}">
 						<span class="input-group-btn">
-							<button class="btn btn-success js-change-score js-increase" type="submit">+</button>
+							<button class="btn btn-success js-change-score js-increase" type="submit">
+								<svg class="icon" viewBox="0 0 8 8"><use class="icon-plus" xlink:href="#plus"></use></svg>
+							</button>
 						</span>
 					</div>
 				</div>
@@ -31,18 +43,55 @@
 
 	<nav class="holenav">
 		{{#if prevHole}}
-			<p><a class="btn btn-default btn-block" href="/game/{{ game._id }}/{{ prevHole.number }}">&lt; Previous Hole</a></p>
+			<p>
+				<a class="btn btn-default btn-block" href="/game/{{ game._id }}/{{ prevHole.number }}">
+					<svg class="icon" viewBox="0 0 8 8"><use class="icon-left" xlink:href="#chevron-left"></use></svg>
+					 Previous Hole
+				 </a>
+			 </p>
 		{{/if}}
 		{{#if nextHole}}
-			<p><a class="btn btn-default  btn-block" href="/game/{{ game._id }}/{{ nextHole.number }}">Next Hole &gt;</a></p>
+			<p>
+				<a class="btn btn-default  btn-block" href="/game/{{ game._id }}/{{ nextHole.number }}">
+					Next Hole
+					<svg class="icon" viewBox="0 0 8 8"><use class="icon-right" xlink:href="#chevron-right"></use></svg>
+				</a>
+			</p>
 		{{else}}
-			<p><button class="btn btn-warning btn-block" type="button" id="finish-game">Finish Game</button></p>
+			<p>
+				<button class="btn btn-warning btn-block" type="button" id="finish-game">
+					Finish Game
+					<svg class="icon" viewBox="0 0 8 8"><use class="icon-circle-check" xlink:href="#circle-check"></use></svg>
+				</button>
+			</p>
 		{{/if}}
 	</nav>
 
+
+
+	<hr>
+
+	{{#if hole.lat }}
+
+
+	{{else}}
+		<div class="ctas">
+			<button class="btn js-set-hole-location">
+				<svg class="icon" viewBox="0 0 8 8"><use class="icon-marker" xlink:href="#map-marker"></use></svg>
+				Set Hole location
+			</button>
+			<p><small>If you're standing next the hole, you can save the hole's location for future reference.</small></p>
+		</div>
+	{{/if}}
+
+	<hr>
+
 	<h2>
 		Hole Details
-		<button class="btn btn-small btn-link pull-right" id="edit-hole-notes" type="button">Edit Details</button>
+		<button class="btn btn-small btn-link pull-right" id="edit-hole-notes" type="button">
+			Edit Details
+			<svg class="icon" viewBox="0 0 8 8"><use class="icon-edit" xlink:href="#pencil"></use></svg>
+		</button>
 	</h2>
 	<textarea id="hole-notes" disabled>{{ hole.notes }}</textarea>
 

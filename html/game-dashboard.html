@@ -11,7 +11,12 @@
 				{{#if isCreator }}*{{/if }}
 
 				{{#if canDeletePlayer}}
-					<p><button type="button" class="btn btn-link removePlayerFromGame game-action remove-item">Remove Player</button></p>
+					<p>
+						<button type="button" class="btn btn-link removePlayerFromGame game-action remove-item">
+							<svg class="icon icon-small" viewBox="0 0 8 8"><use class="icon-remove" xlink:href="#circle-x"></use></svg>
+							Remove Player
+						</button>
+					</p>
 				{{/if}}
 				</div>
 
@@ -23,7 +28,10 @@
 		</ul>
 
 		<p class="ctas">
-			<button class="btn btn-link game-action" id="addplayertogame" type="button">Add Player To Game</button>
+			<button class="btn btn-link game-action" id="addplayertogame" type="button">
+				<svg class="icon icon-small" viewBox="0 0 8 8"><use class="icon-plus" xlink:href="#plus"></use></svg>
+				Add Player To Game
+			</button>
 		</p>
 
 		<div class="addplayers well game-action addplayer-content" id="addplayersform">
@@ -45,7 +53,10 @@
 				<div class="input-group">
 					<input id="onetimeplayers" type="text" class="form-control">
 					<span class="input-group-btn">
-						<button id="onetimeplayersbtn" class="btn btn-default" type="submit">Add +</button>
+						<button id="onetimeplayersbtn" class="btn btn-default" type="submit">
+							Add
+							<svg class="icon icon-small" viewBox="0 0 8 8"><use class="icon-plus" xlink:href="#plus"></use></svg>
+						</button>
 					</span>
 				</div>
 
@@ -77,7 +88,10 @@
 						{{/each }}
 					</ul>
 					{{#unless game.completed}}
-						<a class="btn btn-mini btn-success btn-block game-action" href="{{ holeUrl }}">Go to Hole</a>
+						<a class="btn btn-mini btn-success btn-block game-action" href="{{ holeUrl }}">
+							Go to Hole
+							<svg class="icon icon-small" viewBox="0 0 8 8"><use class="icon-go" xlink:href="#share"></use></svg>
+						</a>
 					{{/unless}}
 				</div>
 			</li>
@@ -85,20 +99,45 @@
 		</ul>
 
 		{{#unless game.completed}}
-			<p class="ctas"><button id="finish-game" type="button" class="btn btn-warning btn-lg btn-block">Finish Game</button></p>
+			<p class="ctas">
+				<button id="finish-game" type="button" class="btn btn-warning btn-lg btn-block">
+					Finish Game
+					<svg class="icon" viewBox="0 0 8 8"><use class="icon-circle-check" xlink:href="#circle-check"></use></svg>
+				</button>
+			</p>
 		{{/unless}}
 
 
 		<aside class="well">
-			<p><small>{{ creatorName }} started this game at {{ formattedTime game.created }}.</small></p>
+			<p>
+				<small>
+					<svg class="icon icon-small" viewBox="0 0 8 8"><use class="icon-calendar" xlink:href="#calendar"></use></svg>
+					{{ creatorName }} started this game at {{ formattedTime game.created }}.
+				</small>
+			</p>
 
 			{{#if game.completed}}
-				<p><small>This game was finished at {{ formattedTime game.completed }}.</small></p>
-					<p><small>Game lasted {{ duration }}.</small></p>
+				<p>
+					<small>
+						<svg class="icon icon-small" viewBox="0 0 8 8"><use class="icon-circle-check" xlink:href="#circle-check"></use></svg>
+						This game was finished at {{ formattedTime game.completed }}.
+					</small>
+				</p>
+				<p>
+					<small>
+						<svg class="icon icon-small" viewBox="0 0 8 8"><use class="icon-timer" xlink:href="#timer"></use></svg>
+						Game lasted {{ duration }}.
+					</small>
+				</p>
 
 			{{/if}}
 		</aside>
 
-		<p class="ctas"><a href="/">Return Home</a></p>
+		<p class="ctas">
+			<a href="/">
+				<svg class="icon" viewBox="0 0 8 8"><use class="icon-home" xlink:href="#home"></use></svg>
+				Return Home
+			</a>
+		</p>
 	</section>
 </template>

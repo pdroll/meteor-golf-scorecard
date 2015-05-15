@@ -204,17 +204,25 @@ Template.Hole.events({
 	//
 	// Increase or Decrease Player's score
 	'click .js-change-score' : function(e){
-		var $btn = $(e.target),
-			$input = $btn.closest('.js-hole-score-control').find('.js-hole-score'),
+		var $btn = $(e.target);
+
+		if(!$btn.is('.js-change-score')){
+			$btn = $btn.closest('.js-change-score');
+		}
+
+		var	$input = $btn.closest('.js-hole-score-control').find('.js-hole-score'),
 			currentScore = parseInt($input.val(), 10),
 			newScore;
+
 
 		if(!currentScore) {
 			newScore = parseInt($('#hole-par').val(), 10);
 		} else {
 			if($btn.is('.js-decrease')){
+				console.log('Down down down');
 				newScore = (currentScore <= 1) ?  1 :  (currentScore - 1);
 			} else {
+				console.log('Up up and away!');
 				newScore = currentScore + 1;
 			}
 		}

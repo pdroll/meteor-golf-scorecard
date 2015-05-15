@@ -3,17 +3,21 @@
 		<div class="info">
 			<strong class="name">{{ this.course }}</strong>
 			<p class="player-list">
-				<strong>Players: </strong>
+				<svg class="icon" viewBox="0 0 8 8"><use class="icon-people" xlink:href="#people"></use></svg>
 				{{#each this.players}}
 					<span>{{ this.name }}</span>
 				{{/each}}
 			</p>
 			<p>
-			{{#if this.completed}}
-				<em class="time">{{ finishedTime }}</em>
-			{{else}}
-				<em class="time">Started {{ timeAgo }}</em>
-			{{/if}}
+				<em class="time">
+					{{#if this.completed}}
+						<svg class="icon" viewBox="0 0 8 8"><use class="icon-calendar" xlink:href="#calendar"></use></svg>
+						{{ finishedTime }}
+					{{else}}
+						<svg class="icon" viewBox="0 0 8 8"><use class="icon-clock" xlink:href="#clock"></use></svg>
+						Started {{ timeAgo }}
+					{{/if}}
+				</em>
 			</p>
 		</div>
 

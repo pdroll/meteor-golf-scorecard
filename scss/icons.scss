@@ -1,0 +1,37 @@
+.icon {
+	height: 16px;
+	width: 16px;
+
+	&.icon-small {
+		height: 12px;
+		width: 12px;
+	}
+
+	.btn & {
+		vertical-align: middle;
+		fill: #555;
+	}
+
+	.btn-success &,
+	.btn-warning & {
+		fill: #fff;
+	}
+
+	a &,
+	.btn-link & {
+		fill: #008cba;
+		vertical-align: baseline;
+		height: 14px;
+		width: 14px;
+
+		&.icon-small {
+			height: 12px;
+			width: 12px;
+		}
+	}
+
+	.navbar & {
+		fill: #fff;
+		vertical-align: top;
+	}
+}
