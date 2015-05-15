@@ -16,15 +16,26 @@
 			{{> gameListItem }}
 		{{/each}}
 		</ul>
+		<div class="ctas">
+			<p><a class="btn btn-primary  btn-lg" href="/create-game">Start New Game</a></p>
+			{{#if completeGames.length}}
+				<p><a href="/completed-games/">View Completed Games</a></p>
+			{{/if}}
+		</div>
+
+	{{else}}
+		<div class="centered">
+			<div class="ctas">
+				<p><a class="btn btn-primary  btn-lg" href="/create-game">Start New Game</a></p>
+				{{#if completeGames.length}}
+					<p><a href="/completed-games/">View Completed Games</a></p>
+				{{/if}}
+			</div>
+		</div>
 	{{/if}}
 
 
-	<div class="ctas">
-		<p><a class="btn btn-primary  btn-lg" href="/create-game">Start New Game</a></p>
-		{{#if completeGames.length}}
-			<p><a href="/completed-games/">View Completed Games</a></p>
-		{{/if}}
-	</div>
+
 
 
 
