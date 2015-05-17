@@ -1,0 +1,237 @@
+{
+	"name" : "Griggs Reservoir",
+	"holes" : [
+		{
+			"number" : 1,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 2,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 4,
+			"players" : [ ]
+		},
+		{
+			"number" : 3,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 4,
+			"players" : [ ]
+		},
+		{
+			"number" : 4,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 5,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 6,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 7,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 8,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 9,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 10,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 11,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 12,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 13,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 14,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 15,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 16,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 17,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 18,
+			"lat" : null,
+			"lng" : null,
+			"notes" : "",
+			"par" : 3,
+			"players" : [ ]
+		}
+	],
+	"_id" : "5N56m7ZkY956bYapc"
+}
+{
+	"_id" : "kpm8PbkpyeaZbiiZN",
+	"holes" : [
+		{
+			"number" : 1,
+			"lat" : null,
+			"lng" : null,
+			"accuracy" : null,
+			"notes" : "347 feet",
+			"par" : 5,
+			"players" : [ ]
+		},
+		{
+			"number" : 2,
+			"lat" : null,
+			"lng" : null,
+			"accuracy" : null,
+			"notes" : "254 feet",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 3,
+			"lat" : null,
+			"lng" : null,
+			"accuracy" : null,
+			"notes" : "366 feet",
+			"par" : 4,
+			"players" : [ ]
+		},
+		{
+			"number" : 4,
+			"lat" : null,
+			"lng" : null,
+			"accuracy" : null,
+			"notes" : "Tee is down bike path, under road, along tree line on the right. 247 feet. ",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 5,
+			"lat" : null,
+			"lng" : null,
+			"accuracy" : null,
+			"notes" : "265 feet. Hole is along tree line ",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 6,
+			"lat" : null,
+			"lng" : null,
+			"accuracy" : null,
+			"notes" : "170ft. Tee is surrounded by trees. ",
+			"par" : 3,
+			"players" : [ ]
+		},
+		{
+			"number" : 7,
+			"lat" : null,
+			"lng" : null,
+			"accuracy" : null,
+			"notes" : "Back under road, down bike path to tee. 305 ft, straight ahead. ",
+			"par" : 4,
+			"players" : [ ]
+		},
+		{
+			"number" : 8,
+			"lat" : null,
+			"lng" : null,
+			"accuracy" : null,
+			"notes" : "327 ft.  Low branches in front of tee",
+			"par" : 4,
+			"players" : [ ]
+		},
+		{
+			"number" : 9,
+			"lat" : null,
+			"lng" : null,
+			"accuracy" : null,
+			"notes" : "250 ft. ",
+			"par" : 3,
+			"players" : [ ]
+		}
+	],
+	"name" : "Worthington Flats"
+}
