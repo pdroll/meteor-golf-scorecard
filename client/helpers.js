@@ -164,6 +164,11 @@ Template.GameDashboard.helpers({
 
 Template.Hole.helpers({
 
-	playerName : playerNameHelper
+	playerName : playerNameHelper,
 
+	accuracy : function(val){
+
+		return Math.ceil(val);
+
+	}
 });

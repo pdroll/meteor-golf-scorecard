@@ -67,22 +67,34 @@
 		{{/if}}
 	</nav>
 
-
-
 	<hr>
 
-	{{#if hole.lat }}
-		<img src="http://maps.googleapis.com/maps/api/staticmap?center=40.125639199999995,+-83.0841037&zoom=19&scale=1&size=320x200&maptype=satellite&format=png&visual_refresh=true&markers=size:mid%7Ccolor:red%7Clabel:1%7C40.125639199999995,+-83.0841037" alt="Google Map of 40.125663599999996, -83.0840939">
+	<h2>Hole Location</h2>
 
-	{{else}}
-		<div class="ctas">
-			<button class="btn btn-info js-set-hole-location">
-				<svg class="icon" viewBox="0 0 8 8"><use class="icon-marker" xlink:href="#map-marker"></use></svg>
-				Set Hole location
+	<div class="hole-location">
+
+
+		{{#if hole.lat }}
+			<img src="http://maps.googleapis.com/maps/api/staticmap?&zoom=19&scale=2&size=425x220&maptype=satellite&format=png&visual_refresh=true&markers=icon:http://chart.apis.google.com/chart?chst=d_map_spin%26chld=.75%257C0%257Cffe749%257C16%257Cb%257C{{ hole.number }}%7C{{ hole.lat }},{{ hole.lng }}" alt="Hole location of Hole {{ hole.number }}">
+			<small><em>Accurate within {{ accuracy hole.accuracy }} feet.</em></small>
+
+			<p><small>Location not correct? <button class="btn btn-link js-set-hole-location" type="button">Reset Hole location.</button></small></p>
+
+			<button class="btn btn-info js-distance-to-hole" type="button">
+				<svg class="icon" viewBox="0 0 8 8"><use class="icon-compass" xlink:href="#compass"></use></svg>
+				Distance to Hole
 			</button>
-			<p><small>If you're standing at the hole, you can save the hole's location for future reference.</small></p>
-		</div>
-	{{/if}}
+		{{else}}
+			<div class="ctas">
+				<button class="btn btn-info js-set-hole-location" type="button">
+					<svg class="icon" viewBox="0 0 8 8"><use class="icon-marker" xlink:href="#map-marker"></use></svg>
+					Set Hole location
+				</button>
+				<p><small>If you're standing at the hole, you can save the hole's location for future reference.</small></p>
+
+			</div>
+		{{/if}}
+	</div>
 
 	<hr>
 

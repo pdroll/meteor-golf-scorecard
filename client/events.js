@@ -219,10 +219,8 @@ Template.Hole.events({
 			newScore = parseInt($('#hole-par').val(), 10);
 		} else {
 			if($btn.is('.js-decrease')){
-				console.log('Down down down');
 				newScore = (currentScore <= 1) ?  1 :  (currentScore - 1);
 			} else {
-				console.log('Up up and away!');
 				newScore = currentScore + 1;
 			}
 		}
@@ -307,5 +305,55 @@ Template.Hole.events({
 		$('#edit-hole-notes').show();
 	},
 
-	'click #finish-game' : finishGame
+	'click #finish-game' : finishGame,
+
+	'click .js-set-hole-location' : function(e, template){
+		e.preventDefault();
+		var templateData = Template.instance().data,
+			hole = templateData.hole,
+			game = templateData.game,
+			$section = $(template.find('.hole-location'));
+
+		$section.addClass('loading');
+
+		getCurrentLocation(function(position){
+			if(position.coords){
+				hole.lat = position.coords.latitude;
+				hole.lng = position.coords.longitude;
+				// Convert accuracy from meters to feet
+				hole.accuracy = (position.coords.accuracy * 3.28084);
+
+				Game.SaveUpdate(game);
+				$section.removeClass('loading');
+			}
+		});
+	},
+
+	'click .js-distance-to-hole' : function(e, template){
+		e.preventDefault();
+		var templateData = Template.instance().data,
+			hole = templateData.hole,
+			$btn = $(template.find('.js-distance-to-hole'));
+
+		if(!$btn.is('.loading')){
+			$btn.addClass('loading');
+
+			if(hole.lat && hole.lng){
+				getCurrentLocation(function(position){
+					var distance = distanceBetweenPoints(position.coords.latitude, position.coords.longitude, hole.lat, hole.lng),
+						currentAccuracy = (position.coords.accuracy * 3.28084),
+						totalAccuracy  = currentAccuracy + hole.accuracy,
+						message = '';
+
+					message += "Current Distance to hole\n";
+					message += "------------------------\n\n";
+					message += Math.ceil(distance) + " Feet\n\n";
+					message += 'Accurate within ' + Math.ceil(totalAccuracy) + ' feet.';
+					alert(message);
+
+					$btn.removeClass('loading');
+				});
+			}
+		}
+	}
 });

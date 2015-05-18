@@ -74,3 +74,30 @@ body .hole-user-list {
 
 }
 
+.hole-location {
+	text-align: center;
+	position: relative;
+
+	&.loading:after {
+		content: "";
+		background: rgba(white,0.5);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+button.loading {
+	opacity: .5;
+	cursor: wait;
+}
+
+.hole-location img {
+	display: block;
+	margin: 0 auto;
+	width: 425px;
+	max-width: 100%;
+	height: auto;
+}
