@@ -11,8 +11,25 @@
 }
 
 
+.hole-list-wrap {
+	width: 100%;
+	overflow: hidden;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+
 .hole-list {
 	text-align: center;
+
+	.row {
+		margin: 0;
+	}
 
 	h3 {
 		font-size: .9em;
@@ -29,7 +46,7 @@
 		font-style: italic;
 	}
 
-	> li {
+	.hole {
 		display: inline-block;
 		width: 32%;
 		vertical-align: top;
@@ -122,6 +139,57 @@
 	}
 
 
+	.classic-element {
+		display: none;
+	}
+
+	.classicview & {
+		white-space: nowrap;
+
+		.grid-element {
+			display: none;
+		}
+
+		.row {
+			padding: 0.5em;
+		}
+
+		.classic-element {
+			display:inline-block;
+		}
+
+		.hole {
+			margin: 0 0 0 -5px;
+			width: auto;
+			border: 1px solid #ccc;
+			border-width: 1px 0;
+		}
+
+		.inner {
+			padding: 0;
+			margin: 0;
+			max-width: none;
+			border-width: 0 1px 0 0;
+		}
+
+		.player-scores {
+			margin: 0;
+		}
+
+		ul li {
+			background: transparent;
+		}
+
+		h3 strong {
+			font-size: 1.5em;
+		}
+
+	}
+}
+
+.viewToggle {
+	float: right;
+	text-transform: capitalize;
 }
 
 @media( max-width: 600px) {
@@ -138,24 +206,3 @@
 		}
 	}
 }
-
-/*
-@media( max-width: 400px) {
-	.hole-list > li {
-		width: 100%;
-
-		.inner {
-			max-width: none;
-		}
-
-		&:nth-child(2n -1) .inner,
-		&:nth-child(4n - 2) .inner,
-		&:nth-child(4n - 1) .inner {
-			background: transparent;
-		}
-
-		&:nth-child(even) .inner {
-			background: #f9f9f9;
-		}
-	}
-} */

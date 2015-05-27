@@ -51,5 +51,20 @@ Template.GameDashboard.events({
 	},
 
 	// Finish Game
-	'click #finish-game' : Game.FinishGamePrompt
+	'click #finish-game' : Game.FinishGamePrompt,
+
+	'click .viewToggle' : function(e){
+		e.preventDefault();
+
+		var currentView = Session.get('scorecardView');
+
+		console.log(currentView);
+
+		if(!currentView || currentView !== 'classic') {
+			Session.set('scorecardView', 'classic');
+		} else {
+			Session.set('scorecardView', 'grid');
+		}
+
+	}
 });

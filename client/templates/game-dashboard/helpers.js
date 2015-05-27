@@ -137,5 +137,21 @@ Template.GameDashboard.helpers({
 			return '' + score
 		}
 
+	},
+
+	currentView : function(inverse){
+
+		var current = Session.get('scorecardView');
+
+		if(!current){
+			current = Session.set('scorecardView', 'grid');
+			current = Session.get('scorecardView');
+		}
+
+		if(current === 'grid'){
+			return inverse ? 'classic' : 'grid';
+		} else {
+			return inverse ? 'grid' : 'classic';
+		}
 	}
 });

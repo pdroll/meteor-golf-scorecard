@@ -32,7 +32,7 @@ Router.route('/', function () {
 });
 
 //
-// Main Dashboard
+// Completed Games
 Router.route('completed-games', function () {
 	this.render('CompletedGames', {
 		data: function () {
@@ -84,7 +84,8 @@ Router.route('/game/:_id', function () {
 
 		//
 		// Sort Players by score
-		game.players.sort(function(a, b){
+		var leaders = _.clone(game.players);
+		leaders.sort(function(a, b){
 			if(a.strokes > b.strokes){
 				return 1;
 			}
@@ -97,8 +98,9 @@ Router.route('/game/:_id', function () {
 		this.render('GameDashboard', {
 			data: function () {
 				return {
-					game  : game,
-					users : users
+					game    : game,
+					users   : users,
+					leaders : leaders
 				}
 			}
 		});
