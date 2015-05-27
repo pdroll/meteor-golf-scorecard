@@ -193,7 +193,7 @@
 }
 
 @media( max-width: 600px) {
-	.hole-list > li {
+	.hole-list .hole {
 		width: 49%;
 
 		&:nth-child(2n -1) .inner {
@@ -201,7 +201,7 @@
 		}
 
 		&:nth-child(4n - 2) .inner,
-		&:nth-child(4n - 1) .inner {
+		&:nth-child(4n - 3) .inner {
 			background: #f9f9f9;
 		}
 	}
