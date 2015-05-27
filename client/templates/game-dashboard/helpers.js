@@ -1,37 +1,3 @@
-var playerNameHelper = function(player){
-	var game = Template.instance().data.game,
-		name = '';
-
-	game.players.forEach(function(el){
-		if(el.id === player.id){
-			name = el.name;
-			return;
-		}
-	});
-
-	return name;
-};
-
-Template.CreateGame.helpers({
-
-	courseHoleCount : function(course){
-		return course.holes.length;
-	}
-});
-
-
-Template.gameListItem.helpers({
-
-	timeAgo : function(){
-		return moment(this.created).fromNow();
-	},
-
-	finishedTime :  function(){
-		return moment(this.completed).calendar();
-	}
-
-});
-
 Template.GameDashboard.helpers({
 
 	canDeletePlayer : function(){
@@ -62,7 +28,19 @@ Template.GameDashboard.helpers({
 		return moment(dateStr).format('llll');
 	},
 
-	playerName : playerNameHelper,
+	playerName : function(player){
+		var game = Template.instance().data.game,
+			name = '';
+
+		game.players.forEach(function(el){
+			if(el.id === player.id){
+				name = el.name;
+				return;
+			}
+		});
+
+		return name;
+	},
 
 	holeUrl : function(){
 		var game =  Template.instance().data.game;
@@ -158,17 +136,6 @@ Template.GameDashboard.helpers({
 		} else {
 			return '' + score
 		}
-
-	}
-});
-
-Template.Hole.helpers({
-
-	playerName : playerNameHelper,
-
-	accuracy : function(val){
-
-		return Math.ceil(val);
 
 	}
 });
