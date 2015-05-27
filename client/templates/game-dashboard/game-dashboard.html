@@ -1,5 +1,5 @@
 <template name="GameDashboard">
-	<section data-completed="{{game.completed}}">
+	<section class="{{ currentView }}view" data-completed="{{game.completed}}">
 		<h1 class="page-header">{{ game.course }}</h1>
 
 		<h3>Leaderboard</h3>
@@ -65,29 +65,37 @@
 
 		<hr>
 
-		<h2>Holes <button class="btn btn-info btn-xs viewToggle" type="button">{{ currentView true }} View</button></h2>
-		<div class="hole-list-wrap {{ currentView }}view">
+		<h2>
+			Holes
+			<button class="btn btn-info btn-xs viewToggle" type="button">
+				<svg class="icon icon-small classic-view-element" viewBox="0 0 8 8"><use class="icon-grid" xlink:href="#grid-three-up"></use></svg>
+				<svg class="icon icon-small grid-view-element" viewBox="0 0 8 8"><use class="icon-list" xlink:href="#spreadsheet"></use></svg>
+				{{ currentView true }} View
+			</button>
+		</h2>
+		<div class="hole-list-wrap ">
 			<ul class="hole-list">
-				<li class="hole classic-element table-labels">
-					<div class="row">Hole Number</div>
-					<div class="row">Par</div>
+				<li class="hole classic-view-element table-labels">
+					<div class="row"><em>Hole Number</em></div>
+					<div class="row"><em>Par</em></div>
 					{{#each game.players}}
-						<div class="row">{{this.name}}</div>
+						<div class="row"><strong>{{this.name}}</strong></div>
 					{{/each}}
+					<div class="row game-action"></div>
 				</li>
 				{{#each game.holes}}
 				<li class="hole">
 					<div class="inner">
 						<div class="row">
-							<h3><span class="grid-element">Hole </span><strong>{{ this.number }}</strong></h3>
+							<h3><span class="grid-view-element">Hole </span><strong>{{ this.number }}</strong></h3>
 						</div>
 						<div class="row">
-							<p class="hole-par"><span class="grid-element">Par </span>{{ this.par }}</p>
+							<p class="hole-par"><span class="grid-view-element">Par </span>{{ this.par }}</p>
 						</div>
 						<ul class="player-scores">
 							{{#each holePlayers this }}
 								<li class="row">
-									<p class="hole-name grid-element">{{ playerName this }}:</p>
+									<p class="hole-name grid-view-element">{{ playerName this }}:</p>
 									<strong class="hole-score {{ scoreClass  }}">
 										{{#if this.score }}
 											{{this.score}}
@@ -99,9 +107,9 @@
 							{{/each }}
 						</ul>
 						{{#unless game.completed}}
-							<p class="row">
-								<a class="btn btn-mini btn-success btn-block game-action" href="{{ holeUrl }}">
-									<span class="grid-element">Go to Hole</span>
+							<p class="row game-action">
+								<a class="btn btn-mini btn-success btn-block" href="{{ holeUrl }}">
+									<span class="grid-view-element">Go to Hole</span>
 									<svg class="icon icon-small" viewBox="0 0 8 8"><use class="icon-go" xlink:href="#share"></use></svg>
 								</a>
 							</p>
@@ -109,6 +117,22 @@
 					</div>
 				</li>
 				{{/each}}
+				<li class="hole classic-view-element table-totals">
+					<div class="row"><small><em>Strokes</em></small></div>
+					<div class="row"></div>
+					{{#each game.players}}
+						<div class="row"><em>{{this.strokes}}</em></div>
+					{{/each}}
+					<div class="row game-action"></div>
+				</li>
+				<li class="hole classic-view-element table-totals">
+					<div class="row"><small><em>Score</em></small></div>
+					<div class="row"></div>
+					{{#each game.players}}
+						<div class="row"><strong>{{ formattedScore this.score }}</strong></div>
+					{{/each}}
+					<div class="row game-action"></div>
+				</li>
 			</ul>
 		</div>
 

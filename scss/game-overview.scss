@@ -82,9 +82,12 @@
 
 	.hole-score,
 	.hole-name {
-		display: table-cell;
-		margin: 0;
-		vertical-align: middle;
+		&,
+		.gridview & {
+			display: table-cell;
+			margin: 0;
+			vertical-align: middle;
+		}
 	}
 
 	.hole-score {
@@ -145,24 +148,26 @@
 
 	.classicview & {
 		white-space: nowrap;
-
-		.grid-element {
-			display: none;
-		}
+		margin-bottom: 3em;
 
 		.row {
 			padding: 0.5em;
+			min-height: 56px;
+			vertical-align: middle;
+			border-bottom: 1px solid #ccc;
+
+			&:nth-child(even) {
+				background: #f9f9f9;
+			}
 		}
 
-		.classic-element {
-			display:inline-block;
-		}
 
 		.hole {
-			margin: 0 0 0 -5px;
+			margin: 0 0 0 -3px;
 			width: auto;
 			border: 1px solid #ccc;
-			border-width: 1px 0;
+			border-width: 1px 0 0 0;
+
 		}
 
 		.inner {
@@ -170,6 +175,10 @@
 			margin: 0;
 			max-width: none;
 			border-width: 0 1px 0 0;
+			&,
+			&:nth-child(n){
+				background: transparent;
+			}
 		}
 
 		.player-scores {
@@ -184,7 +193,50 @@
 			font-size: 1.5em;
 		}
 
+		.hole-score,
+		.hole-par,
+		.table-totals strong,
+		.table-totals em,
+		.table-totals small,
+		.table-labels strong,
+		.table-labels em,
+		h3 strong {
+			margin-top: 8px;
+			display: block;
+		}
+
+		.table-totals strong,
+		.table-totals em {
+			font-size: 1.2em;
+		}
+
+
+		.table-totals,
+		.table-labels {
+			border: 1px solid #ccc;
+			border-width: 1px 1px 0 1px;
+		}
+
+		.table-labels {
+			text-align: right;
+			margin-left: 0;
+
+			em {
+				font-size: .9em;
+			}
+		}
+
 	}
+}
+
+.classicview .grid-view-element,
+.gridview .classic-view-element {
+	display: none;
+}
+
+.classicview .classic-view-element,
+.gridview .grid-view-element {
+	display: inline-block;
 }
 
 .viewToggle {
