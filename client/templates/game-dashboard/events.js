@@ -58,8 +58,6 @@ Template.GameDashboard.events({
 
 		var currentView = Session.get('scorecardView');
 
-		console.log(currentView);
-
 		if(!currentView || currentView !== 'classic') {
 			Session.set('scorecardView', 'classic');
 		} else {

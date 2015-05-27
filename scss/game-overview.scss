@@ -176,7 +176,8 @@
 			max-width: none;
 			border-width: 0 1px 0 0;
 			&,
-			&:nth-child(n){
+			&:nth-child(n),
+			body &:nth-child(n){
 				background: transparent;
 			}
 		}

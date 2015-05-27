@@ -70,6 +70,10 @@ Router.route('/game/:_id', function () {
 			this.redirect('/');
 		}
 
+		//
+		// Sort players Alphabetically
+		game = Game.SortPlayers(game);
+
 		var gameUserIds = [];
 
 		if(game.players){
@@ -128,6 +132,10 @@ Router.route('/game/:_id/:_hole', function () {
 		if(game.completed){
 			this.redirect('/game/' + game._id);
 		}
+
+		//
+		// Sort players Alphabetically
+		game = Game.SortPlayers(game);
 
 		var holeNum = parseInt(this.params._hole, 10),
 			prevHoleNum = holeNum - 1,
