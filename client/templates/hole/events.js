@@ -68,7 +68,7 @@ Template.Hole.events({
 
 		if(newPar && newPar > 1 && newPar !== hole.par) {
 			hole.par = newPar;
-			Game.UpdateAllScores(game)
+			Game.UpdateAllScores(game);
 			Game.SaveUpdate(game);
 
 		} else {

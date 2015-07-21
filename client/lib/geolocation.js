@@ -13,7 +13,7 @@ getCurrentLocation = function(callback){
 		return 'Fetching position...';
 	}
 	return false;
-}
+};
 
 distanceBetweenPoints = function(lat1, lon1, lat2, lon2) {
 	if(lat1 && lon1 && lat2 && lon2){
@@ -30,7 +30,7 @@ distanceBetweenPoints = function(lat1, lon1, lat2, lon2) {
 		dist = dist * 60 * 1.1515 * 5280;
 		return dist;
 	}
-}
+};
 
 
 var geolocate = function(callback){

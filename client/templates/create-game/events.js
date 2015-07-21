@@ -30,6 +30,7 @@ Template.CreateGame.events({
 			existingCourse = $('#existingcourse').val(),
 			newCourse = $('#newcourse').val(),
 			courseName = 'New Course',
+			course,
 			users = [],
 			holes = [],
 			gameTemplate;
@@ -66,15 +67,17 @@ Template.CreateGame.events({
 				courseName = course.name;
 
 			} else if(newCourse) {
-				courseName = $('#newcourse').val();
 
 				for (var i = 0; i < numberholes; ++i) {
 					holes.push(Hole.CreateNew(users, (i + 1)));
 				}
+				// Create and Save New Course
+				course = Course.CreateNew(newCourse, holes);
+				Course.SaveCourse(course);
 
 			}
 
-			gameTemplate = Game.CreateNew(users,holes,courseName);
+			gameTemplate = Game.CreateNew(users,holes,course);
 
 			var newGameId = Game.InsertTemplate(gameTemplate);
 
