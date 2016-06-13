@@ -11,3 +11,4 @@ accounts-ui
 accounts-password
 momentjs:moment
 fourseven:scss
+iron:middleware-stack@1.1.0
