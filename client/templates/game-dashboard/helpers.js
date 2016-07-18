@@ -133,6 +133,17 @@ Template.GameDashboard.helpers({
 
 	},
 
+	coursePar : function(){
+
+		var par = 0;
+
+		this.game.holes.forEach(function(hole){
+			par += parseInt(hole.par, 10);
+		});
+
+		return par;
+	},
+
 	currentView : function(inverse){
 
 		var current = Session.get('scorecardView');
