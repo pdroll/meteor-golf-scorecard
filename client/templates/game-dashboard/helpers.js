@@ -53,7 +53,8 @@ Template.GameDashboard.helpers({
 				str = '';
 
 				if(hours){
-					str += hours + ' hours';
+					str += hours + ' hour';
+					str += (hours > 1) ? 's' : '';
 				}
 
 				if(hours && minutes){
@@ -61,7 +62,8 @@ Template.GameDashboard.helpers({
 				}
 
 				if(minutes){
-					str += minutes + ' minutes';
+					str += minutes + ' minute';
+					str += (minutes > 1) ? 's' : '';
 				}
 
 				if(!minutes && !hours){
